@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("otokurtarma")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d9627f819573cd166eb7b6fcd162ae142e3b887")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ddce9df0fac07401d2fa5ee55459e6cb8522003")]
 [assembly: System.Reflection.AssemblyProductAttribute("otokurtarma")]
 [assembly: System.Reflection.AssemblyTitleAttribute("otokurtarma")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
