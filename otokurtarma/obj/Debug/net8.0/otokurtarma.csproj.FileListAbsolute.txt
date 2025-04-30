@@ -28,14 +28,15 @@ C:\Users\mserh\OneDrive\Desktop\otokurtarma(asp)\otokurtarma\obj\Debug\net8.0\re
 C:\Users\mserh\OneDrive\Desktop\otokurtarma(asp)\otokurtarma\obj\Debug\net8.0\otokurtarma.pdb
 C:\Users\mserh\OneDrive\Desktop\otokurtarma(asp)\otokurtarma\obj\Debug\net8.0\otokurtarma.genruntimeconfig.cache
 C:\Users\mserh\OneDrive\Desktop\otokurtarma(asp)\otokurtarma\obj\Debug\net8.0\ref\otokurtarma.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.exe
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\appsettings.json
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\libman.json
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.staticwebassets.runtime.json
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.staticwebassets.endpoints.json
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.exe
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.deps.json
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.runtimeconfig.json
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\otokurtarma.pdb
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.AssemblyInfoInputs.cache
@@ -62,4 +63,3 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.pdb
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.genruntimeconfig.cache
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\ref\otokurtarma.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\libman.json

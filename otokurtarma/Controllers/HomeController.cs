@@ -8,9 +8,6 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public string username;
-    public string password;
-
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
@@ -18,6 +15,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        return View(new LoginModel());
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Index ([FromForm] LoginModel model)
+    {
+        Console.WriteLine(model.username + model.password);
+
         return View();
     }
 
@@ -30,11 +36,5 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
-
-    public void OnPost(string _username, string _password)
-    {
-        username = _username;
-        password = _password;
     }
 }
