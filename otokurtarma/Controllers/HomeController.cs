@@ -24,7 +24,7 @@ public class HomeController : Controller
     {
         Console.WriteLine(model.username + model.password);
 
-        return View();
+        return View(model);
     }
 
     public IActionResult Privacy()
