@@ -1,0 +1,8 @@
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\otokurtarma.exe
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\appsettings.Development.json
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\appsettings.json
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\libman.json
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\otokurtarma.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\otokurtarma.deps.json
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\otokurtarma.runtimeconfig.json
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\otokurtarma.pdb

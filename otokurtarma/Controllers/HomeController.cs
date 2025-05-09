@@ -15,15 +15,13 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View(new LoginModel());
+        return View(new UsersModel());
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Index ([FromForm] LoginModel model)
+    public async Task<IActionResult> Index ([FromForm] UsersModel model)
     {
-        Console.WriteLine(model.username + model.password);
-
         return View(model);
     }
 
