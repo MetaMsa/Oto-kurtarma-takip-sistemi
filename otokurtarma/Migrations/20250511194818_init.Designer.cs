@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace otokurtarma.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250511163536_init")]
+    [Migration("20250511194818_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -23,7 +23,7 @@ namespace otokurtarma.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("otokurtarma.Models.UsersModel", b =>
+            modelBuilder.Entity("Entities.Models.UsersModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()

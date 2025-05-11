@@ -20,7 +20,7 @@ namespace otokurtarma.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("otokurtarma.Models.UsersModel", b =>
+            modelBuilder.Entity("Entities.Models.UsersModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
