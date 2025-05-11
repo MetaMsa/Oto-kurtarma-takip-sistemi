@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Kayıt Sayfası";
+}
+@model UsersModel
+
+<div class="text-center">
+    <h1 class="display-4">Hoş Geldiniz</h1><br>
+</div>
+
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <div class="register">
+            <form class="form" asp-action="Index" method="post">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" asp-for="fullname" class="form-control" placeholder="Ad-Soyad" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" asp-for="username" class="form-control" placeholder="Kullanıcı Adı" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" asp-for="Email" class="form-control" placeholder="E-Posta" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" asp-for="password" class="form-control" placeholder="Şifre" required>
+                    </div>
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-success form-control">Kayıt Ol <i
+                                class="fa fa-user-plus"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<center>
+    <div class="text-danger" asp-validation-summary="All"></div>
+</center>
+
+<div class="my-3 text-center">
+    <a class="btn btn-primary" asp-action="Index">Giriş Yap <i class="fa-solid fa-right-to-bracket"></i></a>
+</div>
+
+<div class="text-center"><br>
+    <p>Oto kurtarma takip sistemi projemizin <a href="https://github.com/MetaMsa/Oto-kurtarma-takip-sistemi.git">kodları
+            için tıklayın.</a></p>
+</div>

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using otokurtarma.Models;
+using Entities.Models;
 
 public class AppDbContext : DbContext
 {

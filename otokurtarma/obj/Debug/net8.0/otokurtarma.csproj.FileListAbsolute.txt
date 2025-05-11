@@ -327,3 +327,12 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.pdb
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.genruntimeconfig.cache
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\ref\otokurtarma.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Microsoft.Extensions.Localization.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Microsoft.Extensions.Localization.Abstractions.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\entities.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\entities.pdb
