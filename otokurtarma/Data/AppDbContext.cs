@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using otokurtarma.Models;
 using Entities.Models;
 
 public class AppDbContext : DbContext
@@ -8,5 +7,5 @@ public class AppDbContext : DbContext
     {
 
     }
-    public DbSet<UsersModel> Users {get; set;}
+    public DbSet<UsersModel> Users { get; set; }
 }

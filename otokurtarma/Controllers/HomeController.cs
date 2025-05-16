@@ -1,12 +1,12 @@
 using System.Diagnostics;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using otokurtarma.Models;
 using Microsoft.EntityFrameworkCore;
 using Entities.Models;
-using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using System.Runtime.Intrinsics.Arm;
+using Services.Helper;
 namespace otokurtarma.Controllers;
 
 public class HomeController : Controller
@@ -43,7 +43,7 @@ public class HomeController : Controller
             else
             {
                 var user = await _context.Users.FirstOrDefaultAsync(d => d.username == model.username);
-                if (user?.password != model.password)
+                if (AesEncryptionHelper.Decrypt(user.password, "her-sabit-dusunce-sahibi-icin-zindandır") != model.password)
                 {
                     ModelState.AddModelError("password", "Şifre yanlış");
                     return View(model);
@@ -59,7 +59,7 @@ public class HomeController : Controller
                     await HttpContext.SignInAsync(principal, new AuthenticationProperties
                     {
                         IsPersistent = true,
-                        ExpiresUtc = DateTime.UtcNow.AddHours(1)
+                        ExpiresUtc = DateTime.UtcNow.AddHours(3)
                     });
                     return RedirectToAction("Index", "User");
                 }
@@ -88,12 +88,14 @@ public class HomeController : Controller
             }
             else
             {
+                string encryptpsw = AesEncryptionHelper.Encrypt(model.password, "her-sabit-dusunce-sahibi-icin-zindandır");
+
                 UsersModel user = new()
                 {
                     username = model.username,
                     fullname = model.fullname,
                     Email = model.Email,
-                    password = model.password
+                    password = encryptpsw
                 };
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();

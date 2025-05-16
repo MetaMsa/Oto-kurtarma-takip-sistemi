@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X7MDtFWs+eIb/Ys1R1MTJ/DBtrHYzTpKOe69FA0MM70=",
+  "Hash": "8/vRfukmIYTxuLE5DW0sH0+NpYFUEM2h+juadbAKJIU=",
   "Source": "otokurtarma",
   "BasePath": "_content/otokurtarma",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c2tiyv64ts",
-      "Integrity": "pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=",
+      "Fingerprint": "mquyygqcug",
+      "Integrity": "4u3Upc4+CC6VB0afPxrQc83PqLRZVkYYk48pko89v+0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -2224,51 +2224,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.c2tiyv64ts.css",
-      "AssetFile": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\otokurtarma\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "362"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 18:06:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "c2tiyv64ts"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\otokurtarma\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -2279,7 +2234,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "440"
         },
         {
           "Name": "Content-Type",
@@ -2287,11 +2242,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"4u3Upc4+CC6VB0afPxrQc83PqLRZVkYYk48pko89v+0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 18:06:46 GMT"
+          "Value": "Thu, 15 May 2025 15:54:52 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2301,7 +2256,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-4u3Upc4+CC6VB0afPxrQc83PqLRZVkYYk48pko89v+0="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.mquyygqcug.css",
+      "AssetFile": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\otokurtarma\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "440"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4u3Upc4+CC6VB0afPxrQc83PqLRZVkYYk48pko89v+0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 15:54:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mquyygqcug"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4u3Upc4+CC6VB0afPxrQc83PqLRZVkYYk48pko89v+0="
         }
       ]
     },

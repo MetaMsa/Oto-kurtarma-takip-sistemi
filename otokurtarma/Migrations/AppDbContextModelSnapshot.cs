@@ -38,8 +38,7 @@ namespace otokurtarma.Migrations
 
                     b.Property<string>("password")
                         .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("username")
                         .IsRequired()

@@ -308,7 +308,9 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\entities.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Services.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\entities.pdb
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Debug\net8.0\Services.pdb
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.csproj.AssemblyReference.cache
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Debug\net8.0\otokurtarma.AssemblyInfoInputs.cache

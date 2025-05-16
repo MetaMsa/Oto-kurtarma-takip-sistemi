@@ -3743,6 +3743,16 @@
         "runtime": {
           "bin/placeholder/entities.dll": {}
         }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
       }
     }
   },
@@ -9283,6 +9293,11 @@
       "type": "project",
       "path": "../entities/entities.csproj",
       "msbuildProject": "../entities/entities.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9295,6 +9310,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.4",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
+      "Services >= 1.0.0",
       "entities >= 1.0.0"
     ]
   },
@@ -9332,6 +9348,9 @@
           "projectReferences": {
             "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\entities\\entities.csproj": {
               "projectPath": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\entities\\entities.csproj"
+            },
+            "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\Services\\Services.csproj"
             }
           }
         }

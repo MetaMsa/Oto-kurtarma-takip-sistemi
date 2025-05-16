@@ -1,31 +1,28 @@
 @{
-    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
-    var showBanner = !consentFeature?.CanTrack ?? false;
-    var cookieString = consentFeature?.CreateConsentCookie();
+    var consentGiven = Context.Request.Cookies[".AspNet.Consent"] == "yes";
 }
 
-@if (showBanner)
+@if (!consentGiven)
 {
     <center>
-        <div id="cookieConsent" class="alert alert-info alert-dismissible fade show text-center" style="width: fit-content;"
-            role="alert">
-            Güvenliğiniz bizim için önemli. Bu sebeple bizimle paylaşacağınız kişisel verileriniz hassasiyetle
-            korunmaktadır. <a asp-action="Privacy">Daha fazla bilgi için.</a>
-            <button type="button" class="accept-policy close" data-bs-dismiss="alert" aria-label="Close"
-                data-cookie-string="@cookieString">
-                <span aria-hidden="true">
-                    Kabul Et
-                </span>
-            </button>
+        <div id="cookieConsent" class="alert alert-info text-center m-3" style="width: fit-content;">
+            Bu site çerezleri kullanmaktadır. <a asp-controller="Home" asp-action="Privacy">Daha fazla bilgi</a>.
+            <button id="acceptCookieBtn" class="btn btn-primary btn-sm ml-2">Kabul Et</button>
         </div>
     </center>
 
     <script>
-        (function () {
-            var button = document.querySelector("#cookieConsent button[data-cookie-string]");
-            button.addEventListener("click", function (event) {
-                document.cookie = button.dataset.cookieString;
-            }, false);  
-        })();
+        document.getElementById("acceptCookieBtn").addEventListener("click", function () {
+            fetch('/User/SetConsent', {
+                method: 'POST',
+                headers: {
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById("cookieConsent").remove();
+                }
+            });
+        });
     </script>
 }

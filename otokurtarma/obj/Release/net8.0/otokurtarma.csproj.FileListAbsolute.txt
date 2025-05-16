@@ -306,3 +306,5 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Relea
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\entities.pdb
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Release\net8.0\otokurtarma.csproj.AssemblyReference.cache
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\obj\Release\net8.0\otokurta.9656E475.Up2Date
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\Services.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\Services.pdb

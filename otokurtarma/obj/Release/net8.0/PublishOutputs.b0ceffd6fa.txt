@@ -258,5 +258,7 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Relea
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\entities.dll
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Services.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\entities.pdb
+C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Services.pdb
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\otokurtarma.deps.json

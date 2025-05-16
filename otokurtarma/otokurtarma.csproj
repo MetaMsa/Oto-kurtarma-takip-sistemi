@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\entities\entities.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>
