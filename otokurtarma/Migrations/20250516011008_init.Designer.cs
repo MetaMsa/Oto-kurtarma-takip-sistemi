@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace otokurtarma.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250511194818_init")]
+    [Migration("20250516011008_init")]
     partial class init
     {
         /// <inheritdoc />

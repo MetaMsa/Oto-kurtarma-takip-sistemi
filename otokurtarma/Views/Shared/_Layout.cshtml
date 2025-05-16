@@ -29,11 +29,15 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+            @if(ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
+            {
+                <partial name="_CookieConsentPartial"/> 
+            }
     </div>
 
     <footer class="border-top footer text bg-info bg-gradient">
         <div class="container">
-            &copy; 2025 - otokurtarma - <a asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+            &copy; 2025 - otokurtarma - <a href="https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a/">Mehmet Serhat ASLAN</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

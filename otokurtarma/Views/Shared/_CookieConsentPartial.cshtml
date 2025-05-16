@@ -1,0 +1,31 @@
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+    <center>
+        <div id="cookieConsent" class="alert alert-info alert-dismissible fade show text-center" style="width: fit-content;"
+            role="alert">
+            Güvenliğiniz bizim için önemli. Bu sebeple bizimle paylaşacağınız kişisel verileriniz hassasiyetle
+            korunmaktadır. <a asp-action="Privacy">Daha fazla bilgi için.</a>
+            <button type="button" class="accept-policy close" data-bs-dismiss="alert" aria-label="Close"
+                data-cookie-string="@cookieString">
+                <span aria-hidden="true">
+                    Kabul Et
+                </span>
+            </button>
+        </div>
+    </center>
+
+    <script>
+        (function () {
+            var button = document.querySelector("#cookieConsent button[data-cookie-string]");
+            button.addEventListener("click", function (event) {
+                document.cookie = button.dataset.cookieString;
+            }, false);  
+        })();
+    </script>
+}

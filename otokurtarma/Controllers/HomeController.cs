@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using otokurtarma.Models;
 using Microsoft.EntityFrameworkCore;
 using Entities.Models;
-
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 namespace otokurtarma.Controllers;
 
 public class HomeController : Controller
@@ -33,7 +35,35 @@ public class HomeController : Controller
         }
         else
         {
-            return View();
+            if (await _context.Users.FirstOrDefaultAsync(d => d.username == model.username) == null)
+            {
+                ModelState.AddModelError("db", "Böyle bir kullanıcı yok.");
+                return View(model);
+            }
+            else
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(d => d.username == model.username);
+                if (user?.password != model.password)
+                {
+                    ModelState.AddModelError("password", "Şifre yanlış");
+                    return View(model);
+                }
+                else
+                {
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user?.username)
+                    };
+                    var userid = new ClaimsIdentity(claims, "AuthId");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(userid);
+                    await HttpContext.SignInAsync(principal, new AuthenticationProperties
+                    {
+                        IsPersistent = true,
+                        ExpiresUtc = DateTime.UtcNow.AddHours(1)
+                    });
+                    return RedirectToAction("Index", "User");
+                }
+            }
         }
     }
 
@@ -52,9 +82,9 @@ public class HomeController : Controller
         }
         else
         {
-            if (_context.Users.FirstOrDefault(d => d.username == model.username) != null || _context.Users.FirstOrDefault(d => d.Email == model.Email) != null)
+            if (await _context.Users.FirstOrDefaultAsync(d => d.username == model.username) != null || await _context.Users.FirstOrDefaultAsync(d => d.Email == model.Email) != null)
             {
-                ModelState.AddModelError("a", "a");
+                ModelState.AddModelError("db", "Bu kullanıcı zaten var.");
             }
             else
             {
@@ -65,7 +95,7 @@ public class HomeController : Controller
                     Email = model.Email,
                     password = model.password
                 };
-                _context.Users.Add(user);
+                await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new LoginModel());
             }

@@ -6,7 +6,8 @@ namespace otokurtarma.Models;
 public class LoginModel
 {
     [Required(ErrorMessage = "Kullanıcı adı gereklidir")]
-    public string username {get; set;}
+    public string ?username {get; set;}
     [Required(ErrorMessage = "Şifre gereklidir")]
-    public string password {get; set;}
+        [StringLength(8, ErrorMessage = "Şifre 8 karakterden uzun, 6 karakterden kısa olamaz",MinimumLength=6)]
+    public string ?password {get; set;}
 }
