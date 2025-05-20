@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
 </head>
 
-<body class="bg-warning bg-gradient">
+<body class="bg-warning bg-gradient" id="body">
     <header>
         <nav
-            class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3">
+            class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3" id="nav">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img style="width: 4rem;"
                         src="../favicon.ico" alt="logo"></a>
@@ -33,16 +33,19 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
-
-    <footer class="footer">
         @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
         {
             <partial name="_CookieConsentPartial" />
         }
-        <div class="container-fluid border-top bg-info bg-gradient text">
-            &copy; 2025 - otokurtarma - <a href="https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a/">Mehmet
-                Serhat ASLAN</a>
+    </div>
+
+    <footer class="footer">
+            <button type="button" class="btn btn-dark" id="dark-light" onclick="darkLight()">
+                    <i class="fa-solid fa-moon fa-2xl" id="themeicon"></i></button>
+        <div id="footer"
+            class="container-fluid d-flex justify-content-center flex-wrap border-top bg-info bg-gradient text">
+            <div>&copy; 2025</div><div>&nbsp;otokurtarma&nbsp;</div> <div><a href="https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a/">Mehmet
+                    Serhat ASLAN</a></div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

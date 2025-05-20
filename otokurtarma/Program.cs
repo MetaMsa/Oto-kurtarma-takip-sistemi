@@ -21,7 +21,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
-    options.CheckConsentNeeded = context => true;
+    options.CheckConsentNeeded = context => false;
     options.MinimumSameSitePolicy = SameSiteMode.Lax;
 });
 
