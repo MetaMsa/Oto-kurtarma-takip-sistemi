@@ -22,6 +22,7 @@ public class UserController : Controller
     }
 
     [HttpPost]
+    [Authorize]
     public IActionResult SetConsent()
     {
         // 10 yıl geçerli cookie ayarlanıyor
@@ -37,6 +38,30 @@ public class UserController : Controller
         Response.Cookies.Append(".AspNet.Consent", "yes", cookieOptions);
 
         return Ok();
+    }
+
+    [Authorize]
+    public IActionResult Islemler()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Raporlar()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Tanimlar()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Ayarlar()
+    {
+        return View();
     }
 
     public async Task<IActionResult> SignOut()

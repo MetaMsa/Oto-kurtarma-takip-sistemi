@@ -56,8 +56,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mserh/OneDrive/Desktop/Oto-kurtarma-takip-sistemi/otokurtarma/Views/User/Ayarlar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxBeWFybGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mserh/OneDrive/Desktop/Oto-kurtarma-takip-sistemi/otokurtarma/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mserh/OneDrive/Desktop/Oto-kurtarma-takip-sistemi/otokurtarma/Views/User/Islemler.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJc2xlbWxlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mserh/OneDrive/Desktop/Oto-kurtarma-takip-sistemi/otokurtarma/Views/User/Raporlar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSYXBvcmxhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mserh/OneDrive/Desktop/Oto-kurtarma-takip-sistemi/otokurtarma/Views/User/Tanimlar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxUYW5pbWxhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mserh/OneDrive/Desktop/Oto-kurtarma-takip-sistemi/otokurtarma/Views/_ViewImports.cshtml]

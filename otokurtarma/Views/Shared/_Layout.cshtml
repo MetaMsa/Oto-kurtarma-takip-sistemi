@@ -13,8 +13,8 @@
 
 <body class="bg-warning bg-gradient" id="body">
     <header>
-        <nav
-            class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3" id="nav">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3"
+            id="nav">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img style="width: 4rem;"
                         src="../favicon.ico" alt="logo"></a>
@@ -24,6 +24,17 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
+                        {
+                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Islemler">İŞLEMLER</a></div>
+                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Raporlar">RAPORLAR</a></div>
+                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Tanimlar">TANIMLAR</a></div>
+                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Ayarlar">AYARLAR</a></div>
+                            <div class="m-3 text-center">
+                                <a class="btn btn-danger" asp-action="SignOut">Çıkış Yap <i
+                                        class="fa-solid fa-right-from-bracket"></i></a>
+                            </div>
+                        }
                     </ul>
                 </div>
             </div>
@@ -40,11 +51,13 @@
     </div>
 
     <footer class="footer">
-            <button type="button" class="btn btn-dark" id="dark-light" onclick="darkLight()">
-                    <i class="fa-solid fa-moon fa-2xl" id="themeicon"></i></button>
+        <button type="button" class="btn btn-dark" id="dark-light" onclick="darkLight()">
+            <i class="fa-solid fa-moon fa-2xl" id="themeicon"></i></button>
         <div id="footer"
             class="container-fluid d-flex justify-content-center flex-wrap border-top bg-info bg-gradient text">
-            <div>&copy; 2025</div><div>&nbsp;otokurtarma&nbsp;</div> <div><a href="https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a/">Mehmet
+            <div>&copy; 2025</div>
+            <div>&nbsp;otokurtarma&nbsp;</div>
+            <div><a href="https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a/">Mehmet
                     Serhat ASLAN</a></div>
         </div>
     </footer>

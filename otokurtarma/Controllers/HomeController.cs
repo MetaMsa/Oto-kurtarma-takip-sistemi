@@ -52,7 +52,7 @@ public class HomeController : Controller
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user?.username)
+                        new Claim(ClaimTypes.Name, user.username)
                     };
                     var userid = new ClaimsIdentity(claims, "AuthId");
                     ClaimsPrincipal principal = new ClaimsPrincipal(userid);
