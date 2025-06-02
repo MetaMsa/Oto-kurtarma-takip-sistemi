@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Ayarlar";
+}
+@model UsersViewModel
+
+<div class="table-responsive">
+    <h1>Hesap Ayarları</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Ad-Soyad</th>
+                <td>
+                    @Model.user.fullname
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Kullanıcı Adı</th>
+                <td>
+                    @Model.user.username
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">E-Posta</th>
+                <td>
+                    @Model.user.Email
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Şifre</th>
+                <td>
+                    <form class="form" asp-action="Ayarlar" method="post">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="password" asp-for="user.password" class="form-control" placeholder="Şifre"
+                                    required>
+                                <button type="submit" class="btn btn-primary">Şifreyi Değiştir <i
+                                        class="fa fa-edit"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

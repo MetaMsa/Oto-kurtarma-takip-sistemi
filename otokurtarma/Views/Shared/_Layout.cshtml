@@ -16,24 +16,26 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3"
             id="nav">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img style="width: 4rem;"
+                <a class="navbar-brand" asp-action="Index"><img style="width: 4rem;"
                         src="../favicon.ico" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
+                    <ul class="navbar-nav">
                         @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
                         {
-                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Islemler">İŞLEMLER</a></div>
-                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Raporlar">RAPORLAR</a></div>
-                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Tanimlar">TANIMLAR</a></div>
-                        <div class="m-3 text-center"><a class="btn btn-secondary" asp-action="Ayarlar">AYARLAR</a></div>
-                            <div class="m-3 text-center">
-                                <a class="btn btn-danger" asp-action="SignOut">Çıkış Yap <i
-                                        class="fa-solid fa-right-from-bracket"></i></a>
-                            </div>
+                            <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
+                                    asp-action="Islemler">İŞLEMLER</a></li>
+                            <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
+                                    asp-action="Raporlar">RAPORLAR</a></li>
+                            <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
+                                    asp-action="Tanimlar">TANIMLAR</a></li>
+                            <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
+                                    asp-action="Ayarlar">Ayarlar</a></li>
+                            <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
+                                    asp-action="signOut">Çıkış Yap <i class="fa-solid fa-right-from-bracket"></i></a></li>
                         }
                     </ul>
                 </div>

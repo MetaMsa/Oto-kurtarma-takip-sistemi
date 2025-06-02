@@ -1,7 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
+using otokurtarma.Models;
 using Services.Helper;
+using Entities.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 
 namespace otokurtarma.Controllers;
 
@@ -59,12 +64,37 @@ public class UserController : Controller
     }
 
     [Authorize]
-    public IActionResult Ayarlar()
+    public async Task<IActionResult> Ayarlar()
     {
-        return View();
+        var usrname = User.Identity?.Name;
+        var usr = await _context.Users.FirstOrDefaultAsync(u => u.username == usrname);
+
+        var model = new UsersViewModel { user = usr };
+
+        return View(model);
     }
 
-    public async Task<IActionResult> SignOut()
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> Ayarlar([FromForm] UsersViewModel model)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(d => d.username == User.Identity.Name);
+        if (user != null)
+        {
+            string encryptpsw = AesEncryptionHelper.Encrypt(model.user.password, "her-sabit-dusunce-sahibi-icin-zindandır");
+            user.password = encryptpsw;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Ayarlar");
+        }
+        else
+        {
+            return View(model);
+        }
+    }
+
+    public async Task<IActionResult> signOut()
     {
         await HttpContext.SignOutAsync();
         return RedirectToAction("Index", "Home");

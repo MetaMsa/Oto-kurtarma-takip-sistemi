@@ -22,7 +22,10 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View(new LoginModel());
+        if (User.Identity.Name == null)
+            return View(new LoginModel());
+        else
+            return RedirectToAction("Index", "User");
     }
 
     [HttpPost]
