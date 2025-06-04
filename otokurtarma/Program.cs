@@ -11,7 +11,7 @@ builder.Services.AddSession();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
-    options.ExpireTimeSpan = TimeSpan.FromHours(3);
+    options.ExpireTimeSpan = TimeSpan.FromDays(1);
     options.SlidingExpiration = true;
     options.AccessDeniedPath = "/Home/Denied";
     options.LoginPath = "/Home/Index";

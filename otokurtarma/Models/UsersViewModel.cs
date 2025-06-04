@@ -1,11 +1,24 @@
 using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace otokurtarma.Models
 {
     public class UsersViewModel
     {
-        public UsersModel? user { get; set; }
+        [Required(ErrorMessage = "Lütfen Adınızı ve Soyadınızı girin")]
+        public string fullname { get; set; }
+
+        [Required(ErrorMessage = "Lütfen kullanıcı adınızı girin")]
+        public string username { get; set; }
+
+        [Required(ErrorMessage = "Lütfen E-Posta adresinizi girin")]
+        [EmailAddress(ErrorMessage = "Geçersiz E-Posta adresi")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Lütfen şifrenizi girin")]
+        [MinLength(6, ErrorMessage = "Şifre 6 karakterden uzun olmalıdır.")]
+        public string password { get; set; }
 
         public UsersViewModel()
         {

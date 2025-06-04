@@ -25,3 +25,15 @@ body {
   list-style-type: none;
   padding: 0;
 }
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: transform 0.1s ease, background-color 0.3s ease;
+  z-index: 1;
+}

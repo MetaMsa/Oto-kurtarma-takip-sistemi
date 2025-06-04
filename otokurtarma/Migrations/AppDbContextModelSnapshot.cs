@@ -20,6 +20,35 @@ namespace otokurtarma.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Entities.Models.RolesModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Role = "Admin"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Role = "User"
+                        });
+                });
+
             modelBuilder.Entity("Entities.Models.UsersModel", b =>
                 {
                     b.Property<int>("ID")
@@ -31,6 +60,9 @@ namespace otokurtarma.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RolesModelId")
+                        .HasColumnType("int");
 
                     b.Property<string>("fullname")
                         .IsRequired()
@@ -46,7 +78,25 @@ namespace otokurtarma.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("RolesModelId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Entities.Models.UsersModel", b =>
+                {
+                    b.HasOne("Entities.Models.RolesModel", "RolesModel")
+                        .WithMany("Users")
+                        .HasForeignKey("RolesModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RolesModel");
+                });
+
+            modelBuilder.Entity("Entities.Models.RolesModel", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

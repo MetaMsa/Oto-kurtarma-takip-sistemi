@@ -1,12 +1,13 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using otokurtarma.Models;
 using Microsoft.EntityFrameworkCore;
 using Entities.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using System.Runtime.Intrinsics.Arm;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Services.Helper;
+using otokurtarma.Models;
+
 namespace otokurtarma.Controllers;
 
 public class HomeController : Controller
@@ -22,7 +23,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        if (User.Identity.Name == null)
+        if (User.Identity?.Name == null)
             return View(new LoginModel());
         else
             return RedirectToAction("Index", "User");
@@ -46,7 +47,7 @@ public class HomeController : Controller
             else
             {
                 var user = await _context.Users.FirstOrDefaultAsync(d => d.username == model.username);
-                if (AesEncryptionHelper.Decrypt(user.password, "her-sabit-dusunce-sahibi-icin-zindandır") != model.password)
+                if (user == null || AesEncryptionHelper.Decrypt(user.password ?? string.Empty, "her-sabit-dusunce-sahibi-icin-zindandır") != model.password)
                 {
                     ModelState.AddModelError("password", "Şifre yanlış");
                     return View(model);
@@ -55,9 +56,9 @@ public class HomeController : Controller
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user.username)
+                        new Claim(ClaimTypes.Name, user.username ?? string.Empty)
                     };
-                    var userid = new ClaimsIdentity(claims, "AuthId");
+                    var userid = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(userid);
                     await HttpContext.SignInAsync(principal, new AuthenticationProperties
                     {
@@ -72,12 +73,12 @@ public class HomeController : Controller
 
     public IActionResult Register()
     {
-        return View(new UsersModel());
+        return View(new UsersViewModel());
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Register([FromForm] UsersModel model)
+    public async Task<IActionResult> Register([FromForm] UsersViewModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -93,12 +94,15 @@ public class HomeController : Controller
             {
                 string encryptpsw = AesEncryptionHelper.Encrypt(model.password, "her-sabit-dusunce-sahibi-icin-zindandır");
 
+                var role = await _context.Roles.FindAsync(model.username == "metamsa" ? 1 : 2);
+
                 UsersModel user = new()
                 {
                     username = model.username,
                     fullname = model.fullname,
                     Email = model.Email,
-                    password = encryptpsw
+                    password = encryptpsw,
+                    RolesModelId = role?.ID ?? 0
                 };
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
@@ -111,6 +115,33 @@ public class HomeController : Controller
     public IActionResult Privacy()
     {
         return View();
+    }
+
+    public IActionResult Darklight()
+    {
+        if (Request.Cookies[".Site.isDark"] == "yes")
+        {
+            Response.Cookies.Append(".Site.isDark", "no", new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddMonths(1),
+                Path = "/",
+                SameSite = SameSiteMode.Lax,
+                IsEssential = true,
+                HttpOnly = false
+            });
+        }
+        else
+        {
+            Response.Cookies.Append(".Site.isDark", "yes", new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddMonths(1),
+                Path = "/",
+                SameSite = SameSiteMode.Lax,
+                IsEssential = true,
+                HttpOnly = false
+            });
+        }
+        return Ok();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

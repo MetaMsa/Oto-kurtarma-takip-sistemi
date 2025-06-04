@@ -10,19 +10,19 @@
             <tr>
                 <th scope="row">Ad-Soyad</th>
                 <td>
-                    @Model.user.fullname
+                    @Model.fullname
                 </td>
             </tr>
             <tr>
                 <th scope="row">Kullanıcı Adı</th>
                 <td>
-                    @Model.user.username
+                    @Model.username
                 </td>
             </tr>
             <tr>
                 <th scope="row">E-Posta</th>
                 <td>
-                    @Model.user.Email
+                    @Model.Email
                 </td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
                     <form class="form" asp-action="Ayarlar" method="post">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="password" asp-for="user.password" class="form-control" placeholder="Şifre"
+                                <input type="password" asp-for="password" class="form-control" placeholder="Şifre"
                                     required>
                                 <button type="submit" class="btn btn-primary">Şifreyi Değiştir <i
                                         class="fa fa-edit"></i></button>

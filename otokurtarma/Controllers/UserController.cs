@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using otokurtarma.Models;
 using Services.Helper;
-using Entities.Models;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace otokurtarma.Controllers;
 
+[Authorize]
 public class UserController : Controller
 {
     private readonly ILogger<UserController> _logger;
@@ -20,20 +19,18 @@ public class UserController : Controller
         _context = context;
     }
 
-    [Authorize]
     public IActionResult Index()
     {
         return View();
     }
 
     [HttpPost]
-    [Authorize]
     public IActionResult SetConsent()
     {
         // 10 yıl geçerli cookie ayarlanıyor
         var cookieOptions = new CookieOptions
         {
-            Expires = DateTimeOffset.UtcNow.AddDays(1),
+            Expires = DateTimeOffset.UtcNow.AddMonths(1),
             Path = "/",
             SameSite = SameSiteMode.Lax,
             IsEssential = true,
@@ -45,43 +42,45 @@ public class UserController : Controller
         return Ok();
     }
 
-    [Authorize]
     public IActionResult Islemler()
     {
         return View();
     }
 
-    [Authorize]
     public IActionResult Raporlar()
     {
         return View();
     }
 
-    [Authorize]
     public IActionResult Tanimlar()
     {
         return View();
     }
 
-    [Authorize]
     public async Task<IActionResult> Ayarlar()
     {
         var usrname = User.Identity?.Name;
         var usr = await _context.Users.FirstOrDefaultAsync(u => u.username == usrname);
 
-        var model = new UsersViewModel { user = usr };
+        var model = new UsersViewModel
+        {
+            fullname = usr.fullname,
+            username = usr.username,
+            Email = usr.Email,
+            password = usr.password
+        };
 
         return View(model);
     }
 
     [HttpPost]
-    [Authorize]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Ayarlar([FromForm] UsersViewModel model)
     {
         var user = await _context.Users.FirstOrDefaultAsync(d => d.username == User.Identity.Name);
         if (user != null)
         {
-            string encryptpsw = AesEncryptionHelper.Encrypt(model.user.password, "her-sabit-dusunce-sahibi-icin-zindandır");
+            string encryptpsw = AesEncryptionHelper.Encrypt(model.password, "her-sabit-dusunce-sahibi-icin-zindandır");
             user.password = encryptpsw;
 
             await _context.SaveChangesAsync();
@@ -94,9 +93,11 @@ public class UserController : Controller
         }
     }
 
-    public async Task<IActionResult> signOut()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Signout()
     {
-        await HttpContext.SignOutAsync();
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return RedirectToAction("Index", "Home");
     }
 }

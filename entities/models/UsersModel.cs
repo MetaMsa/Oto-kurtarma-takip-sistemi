@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Data;
 
 namespace Entities.Models
 {
@@ -21,5 +20,8 @@ namespace Entities.Models
         [Required(ErrorMessage = "Lütfen şifrenizi girin")]
         [MinLength(6, ErrorMessage = "Şifre 6 karakterden uzun olmalıdır.")]
         public string? password { get; set; }
+
+        public int RolesModelId { get; set; }
+        public RolesModel RolesModel { get; set; }
     }
 }
