@@ -22,6 +22,10 @@ namespace Entities.Models
         public string? password { get; set; }
 
         public int RolesModelId { get; set; }
-        public RolesModel RolesModel { get; set; }
+        public RolesModel? RolesModel { get; set; }
+
+        [Required(ErrorMessage = "Lütfen şirket adınızı girin")]
+        public int CompaniesModelId { get; set; }
+        public CompaniesModel? CompaniesModel { get; set; }
     }
 }

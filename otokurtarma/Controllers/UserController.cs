@@ -60,7 +60,9 @@ public class UserController : Controller
     public async Task<IActionResult> Ayarlar()
     {
         var usrname = User.Identity?.Name;
-        var usr = await _context.Users.FirstOrDefaultAsync(u => u.username == usrname);
+        var usr = await _context.Users.Include(u => u.RolesModel).FirstOrDefaultAsync(u => u.username == usrname);
+
+        ViewBag.Role = usr.RolesModel.Role;
 
         var model = new UsersViewModel
         {
@@ -77,20 +79,37 @@ public class UserController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Ayarlar([FromForm] UsersViewModel model)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(d => d.username == User.Identity.Name);
-        if (user != null)
+        if (model.password != null)
         {
-            string encryptpsw = AesEncryptionHelper.Encrypt(model.password, "her-sabit-dusunce-sahibi-icin-zindandır");
-            user.password = encryptpsw;
+            var user = await _context.Users.FirstOrDefaultAsync(d => d.username == User.Identity.Name);
+            if (user != null)
+            {
+                string encryptpsw = AesEncryptionHelper.Encrypt(model.password, "her-sabit-dusunce-sahibi-icin-zindandır");
+                user.password = encryptpsw;
 
-            await _context.SaveChangesAsync();
-
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction("Ayarlar");
         }
-        else
+
+        if (model.pp != null)
         {
-            return View(model);
+            if (model.pp.ContentType == "image/jpeg" || model.pp.ContentType == "image/jpg" || model.pp.ContentType == "image/png")
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\profilePictures", User.Identity.Name + ".png");
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await model.pp.CopyToAsync(stream);
+                }
+            }
+            return RedirectToAction("Ayarlar");
         }
+
+        return View(model);
     }
 
     [HttpPost]

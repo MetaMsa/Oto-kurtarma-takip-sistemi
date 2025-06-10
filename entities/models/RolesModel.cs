@@ -7,7 +7,8 @@ namespace Entities.Models
         [Key]
         public int ID { get; set; }
         public string Role { get; set; }
-        
+
         public List<UsersModel> Users { get; set; }
+        public List<StaffModel> Staffs { get; set; }
     }
 }

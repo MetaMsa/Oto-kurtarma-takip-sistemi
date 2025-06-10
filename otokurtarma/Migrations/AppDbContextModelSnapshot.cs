@@ -20,6 +20,23 @@ namespace otokurtarma.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Entities.Models.CompaniesModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Companies");
+                });
+
             modelBuilder.Entity("Entities.Models.RolesModel", b =>
                 {
                     b.Property<int>("ID")
@@ -46,7 +63,37 @@ namespace otokurtarma.Migrations
                         {
                             ID = 2,
                             Role = "User"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Role = "Staff"
                         });
+                });
+
+            modelBuilder.Entity("Entities.Models.StaffModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CompaniesModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RolesModelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("RolesModelId");
+
+                    b.ToTable("Staff");
                 });
 
             modelBuilder.Entity("Entities.Models.UsersModel", b =>
@@ -56,6 +103,9 @@ namespace otokurtarma.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CompaniesModelId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -78,24 +128,60 @@ namespace otokurtarma.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RolesModelId");
+                    b.HasIndex("CompaniesModelId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Entities.Models.UsersModel", b =>
+            modelBuilder.Entity("Entities.Models.StaffModel", b =>
                 {
-                    b.HasOne("Entities.Models.RolesModel", "RolesModel")
-                        .WithMany("Users")
+                    b.HasOne("Entities.Models.CompaniesModel", "CompaniesModel")
+                        .WithMany("Staffs")
                         .HasForeignKey("RolesModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Models.RolesModel", "RolesModel")
+                        .WithMany("Staffs")
+                        .HasForeignKey("RolesModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompaniesModel");
+
                     b.Navigation("RolesModel");
+                });
+
+            modelBuilder.Entity("Entities.Models.UsersModel", b =>
+                {
+                    b.HasOne("Entities.Models.CompaniesModel", "CompaniesModel")
+                        .WithMany("Users")
+                        .HasForeignKey("CompaniesModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.RolesModel", "RolesModel")
+                        .WithMany("Users")
+                        .HasForeignKey("CompaniesModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompaniesModel");
+
+                    b.Navigation("RolesModel");
+                });
+
+            modelBuilder.Entity("Entities.Models.CompaniesModel", b =>
+                {
+                    b.Navigation("Staffs");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Entities.Models.RolesModel", b =>
                 {
+                    b.Navigation("Staffs");
+
                     b.Navigation("Users");
                 });
 #pragma warning restore 612, 618

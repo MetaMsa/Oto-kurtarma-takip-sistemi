@@ -27,14 +27,28 @@
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
                         <ul class="navbar-nav">
+                            <li class="m-2 nav-item text-center">
+                                    @{
+                                        var filePath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",
+                                        "profilePictures", User.Identity.Name + ".png");
+                                        var profilePicUrl = Url.Content("~/profilePictures/" + User.Identity.Name + ".png");
+                                    }
+
+                                    @if (System.IO.File.Exists(filePath))
+                                    {
+                                        <a asp-action="Ayarlar"><img class="rounded" style="width: 4rem; height: 4rem;" src="@profilePicUrl" alt="Profil Resmi" /></a>
+                                    }
+                                    else
+                                    {
+                                       <a asp-action="Ayarlar" class="btn btn-secondary nav-link text-white"><i class="fa fa-user"></i></a>
+                                    }
+                            </li>
                             <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
                                     asp-action="Islemler">İŞLEMLER</a></li>
                             <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
                                     asp-action="Raporlar">RAPORLAR</a></li>
                             <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
                                     asp-action="Tanimlar">TANIMLAR</a></li>
-                            <li class="m-3 nav-item text-center"><a class="btn btn-secondary nav-link text-white"
-                                    asp-action="Ayarlar">Ayarlar</a></li>
                             <li class="m-3 nav-item text-center">
                                 <form asp-action="Signout" method="post">
                                     <button type="submit" class="btn btn-secondary nav-link text-white w-100">Çıkış Yap <i
@@ -49,6 +63,11 @@
     </header>
     <div class="container my-3">
         <main role="main" class="pb-3">
+            <div class="text-center" id="load">
+                <div class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
             @RenderBody()
         </main>
         @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
@@ -73,7 +92,7 @@
 
             <div id="info" class="modal fade">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content text-dark">
                         <div class="modal-header">
                             <h3 class="modal-title">Oto Kurtarma Takip Sistemi</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -101,71 +120,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
-    <script>
-        function getCookie(name) {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const c = cookies[i].trim();
-                if (c.startsWith(name + '=')) {
-                    return c.substring(name.length + 1);
-                }
-            }
-            return null;
-        }
-
-        window.onload = () => {
-            if (getCookie(".Site.isDark") == "yes") {
-                document.getElementById("themeicon").className = "fa-regular fa-sun fa-2xl";
-                document.getElementById("dark-light").className = "btn btn-primary";
-
-                document.getElementById("nav").className =
-                    "navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3";
-                document.getElementById("body").className = "bg-secondary";
-                document.getElementById("footer").className =
-                    "container-fluid d-flex justify-content-center flex-wrap border-top bg-dark text-light";
-            } else {
-                document.getElementById("themeicon").className = "fa-solid fa-moon fa-2xl";
-                document.getElementById("dark-light").className = "btn btn-dark";
-
-                document.getElementById("nav").className =
-                    "navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3";
-                document.getElementById("body").className = "bg-warning bg-gradient";
-                document.getElementById("footer").className =
-                    "container-fluid d-flex justify-content-center flex-wrap border-top bg-info bg-gradient text";
-            }
-        }
-
-
-        $("#dark-light").on("click", function () {
-            $.ajax({
-                type: "POST",
-                url: "/Home/Darklight",
-                headers: {
-                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
-                },
-                success: function () {
-                    console.log(getCookie(".Site.isDark"));
-                    if (getCookie(".Site.isDark") == "yes") {
-                        $("#themeicon").attr("class", "fa-regular fa-sun fa-2xl");
-                        $("#dark-light").attr("class", "btn btn-primary");
-
-                        $("#nav").attr("class", "navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3");
-                        $("#body").attr("class", "bg-secondary");
-                        $("#footer").attr("class", "container-fluid d-flex justify-content-center flex-wrap border-top bg-dark text-light");
-                    } else {
-                        $("#themeicon").attr("class", "fa-solid fa-moon fa-2xl");
-                        $("#dark-light").attr("class", "btn btn-dark");
-
-                        $("#nav").attr("class", "navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3");
-                        $("#body").attr("class", "bg-warning bg-gradient");
-                        $("#footer").attr("class", "container-fluid d-flex justify-content-center flex-wrap border-top bg-info bg-gradient text");
-                    }
-                }
-            });
-        });
-
-    </script>
 </body>
 
 </html>

@@ -96,14 +96,29 @@ public class HomeController : Controller
 
                 var role = await _context.Roles.FindAsync(model.username == "metamsa" ? 1 : 2);
 
+                if (await _context.Companies.FirstOrDefaultAsync(d => d.Company == model.CompaniesModel.Company) != null)
+                {
+                    CompaniesModel company = new()
+                    {
+                        Company = model.CompaniesModel.Company
+                    };
+
+                    await _context.Companies.AddAsync(company);
+                    await _context.SaveChangesAsync();
+                }
+
+                var company1 = await _context.Companies.FirstOrDefaultAsync(d => d.Company == model.CompaniesModel.Company);
+
                 UsersModel user = new()
                 {
                     username = model.username,
                     fullname = model.fullname,
                     Email = model.Email,
                     password = encryptpsw,
-                    RolesModelId = role?.ID ?? 0
+                    RolesModelId = role?.ID ?? 0,
+                    CompaniesModelId = company1.ID
                 };
+
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", new LoginModel());

@@ -8,7 +8,11 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -21,7 +25,7 @@ body {
   margin-bottom: 60px;
 }
 
-.validation-summary-errors ul{
+.validation-summary-errors ul {
   list-style-type: none;
   padding: 0;
 }
@@ -36,4 +40,16 @@ body {
   pointer-events: none;
   transition: transform 0.1s ease, background-color 0.3s ease;
   z-index: 1;
+}
+
+#load {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }

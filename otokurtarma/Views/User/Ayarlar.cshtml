@@ -26,6 +26,28 @@
                 </td>
             </tr>
             <tr>
+                <th scope="row">Rol</th>
+                <td>
+                    @ViewBag.Role
+                </td>   
+            </tr>
+            <tr>
+                <th scope="row">Profil Fotoğrafı</th>
+                <td>
+                    <img style="width: 10rem; height: 10rem;" src="@Url.Content("~/profilePictures/" + User.Identity.Name + ".png")" alt="">
+                    <form enctype="multipart/form-data" asp-action="Ayarlar" class="form" method="post">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="file" asp-for="pp" class="form-control" placeholder="Şifre"
+                                    required>
+                                <button type="submit" class="btn btn-primary">Profili Değiştir <i
+                                        class="fa fa-edit"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
                 <th scope="row">Şifre</th>
                 <td>
                     <form class="form" asp-action="Ayarlar" method="post">

@@ -20,6 +20,12 @@ namespace otokurtarma.Models
         [MinLength(6, ErrorMessage = "Şifre 6 karakterden uzun olmalıdır.")]
         public string password { get; set; }
 
+        [Required(ErrorMessage = "Lütfen şirket adınızı girin")]
+        public int CompaniesModelId { get; set; }
+        public CompaniesModel? CompaniesModel { get; set; }
+
+        public IFormFile pp { get; set; } = new FormFile(Stream.Null, 0, 0, "pp", "?.png");
+
         public UsersViewModel()
         {
         }

@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
-        <div class="register">
+        <div>
             <form class="form" asp-action="Register" method="post">
                 <div class="form-group">
                     <div class="input-group">
@@ -23,10 +23,13 @@
                         <input type="email" asp-for="Email" class="form-control" placeholder="E-Posta" required>
                     </div>
                     <div class="input-group">
+                        <input type="text" asp-for="CompaniesModel.Company" class="form-control" placeholder="Şirket isminizi girin" required>
+                    </div>
+                    <div class="input-group">
                         <input type="password" asp-for="password" class="form-control" placeholder="Şifre" required>
                     </div>
                     <div class="input-group">
-                        <button type="submit" class="btn btn-success form-control">Kayıt Ol <i
+                        <button type="submit" class="btn btn-primary form-control">Kayıt Ol <i
                                 class="fa fa-user-plus"></i></button>
                     </div>
                 </div>
@@ -41,7 +44,7 @@
 </center>
 
 <div class="my-3 text-center">
-    <a class="btn btn-primary" asp-action="Index">Giriş Yap <i class="fa-solid fa-right-to-bracket"></i></a>
+    <a class="btn btn-success" asp-action="Index">Giriş Yap <i class="fa-solid fa-right-to-bracket"></i></a>
 </div>
 
 <div class="text-center"><br>
