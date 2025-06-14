@@ -26,7 +26,7 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<RolesModel>().HasMany(c => c.Users)
         .WithOne(u => u.RolesModel)
-        .HasForeignKey(u => u.CompaniesModelId)
+        .HasForeignKey(u => u.RolesModelId)
         .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<RolesModel>().HasMany(r => r.Staffs)
@@ -41,7 +41,7 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<CompaniesModel>().HasMany(c => c.Staffs)
         .WithOne(s => s.CompaniesModel)
-        .HasForeignKey(s => s.RolesModelId)
+        .HasForeignKey(s => s.CompaniesModelId)
         .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,8 +1,40 @@
 @{
     ViewData["Title"] = "Panel";
 }
-<div class="text-center">
-    <p>
-        Merhaba @User.Identity.Name
-    </p>
+
+<div class="text-center table-responsive">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Tam Adı</th>
+            </tr>
+            <tr>
+                <td>@Model.fullname</td>
+            </tr>
+            <tr>
+                <th>Kullanıcı Adı</th>
+            </tr>
+            <tr>
+                <td>@Model.username</td>
+            </tr>
+            <tr>
+                <th>E-Posta</th>
+            </tr>
+            <tr>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <th>Rolü</th>
+            </tr>
+            <tr>
+                <td>@Model.RolesModel.Role</td>
+            </tr>
+            <tr>
+                <th>Şirket</th>
+            </tr>
+            <tr>
+                <td>@Model.CompaniesModel.Company</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

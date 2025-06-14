@@ -5,6 +5,9 @@ using otokurtarma.Models;
 using Services.Helper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Entities.Models;
+using System.Text.RegularExpressions;
 
 namespace otokurtarma.Controllers;
 
@@ -19,15 +22,25 @@ public class UserController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var usr = await _context.Users.Include(u => u.RolesModel).Include(u => u.CompaniesModel).FirstOrDefaultAsync(u => u.username == User.Identity.Name);
+
+        var model = new UsersModel
+        {
+            fullname = usr.fullname,
+            username = usr.username,
+            Email = usr.Email,
+            password = usr.password,
+            CompaniesModel = usr.CompaniesModel,
+            RolesModel = usr.RolesModel
+        };
+        return View(model);
     }
 
     [HttpPost]
     public IActionResult SetConsent()
     {
-        // 10 yıl geçerli cookie ayarlanıyor
         var cookieOptions = new CookieOptions
         {
             Expires = DateTimeOffset.UtcNow.AddMonths(1),
@@ -62,13 +75,8 @@ public class UserController : Controller
         var usrname = User.Identity?.Name;
         var usr = await _context.Users.Include(u => u.RolesModel).FirstOrDefaultAsync(u => u.username == usrname);
 
-        ViewBag.Role = usr.RolesModel.Role;
-
-        var model = new UsersViewModel
+        var model = new SettingsViewModel
         {
-            fullname = usr.fullname,
-            username = usr.username,
-            Email = usr.Email,
             password = usr.password
         };
 
@@ -77,24 +85,41 @@ public class UserController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Ayarlar([FromForm] UsersViewModel model)
+    public async Task<IActionResult> Ayarlar([FromForm] SettingsViewModel model)
     {
-        if (model.password != null)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(d => d.username == User.Identity.Name);
-            if (user != null)
-            {
-                string encryptpsw = AesEncryptionHelper.Encrypt(model.password, "her-sabit-dusunce-sahibi-icin-zindandır");
-                user.password = encryptpsw;
+        var usrname = User.Identity?.Name;
+        var usr = await _context.Users.Include(u => u.RolesModel).FirstOrDefaultAsync(u => u.username == usrname);
 
-                await _context.SaveChangesAsync();
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+        else
+        {
+            if (model.password != null)
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(d => d.username == User.Identity.Name);
+                if (user != null)
+                {
+                    string encryptpsw = AesEncryptionHelper.Encrypt(model.password, "her-sabit-dusunce-sahibi-icin-zindandır");
+                    user.password = encryptpsw;
+
+                    await _context.SaveChangesAsync();
+                }
+                return RedirectToAction("Ayarlar");
             }
-            return RedirectToAction("Ayarlar");
         }
 
-        if (model.pp != null)
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Pp([FromForm] IFormFile file)
+    {
+        if (file != null)
         {
-            if (model.pp.ContentType == "image/jpeg" || model.pp.ContentType == "image/jpg" || model.pp.ContentType == "image/png")
+            if (file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png")
             {
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\profilePictures", User.Identity.Name + ".png");
                 if (System.IO.File.Exists(path))
@@ -103,13 +128,41 @@ public class UserController : Controller
                 }
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
-                    await model.pp.CopyToAsync(stream);
+                    file.CopyTo(stream);
                 }
+            }
+            else
+            {
+                TempData["imgError"] = "Geçerli bir resim yükleyiniz";
             }
             return RedirectToAction("Ayarlar");
         }
+        return RedirectToAction("Ayarlar");
+    }
 
-        return View(model);
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Pp2([FromForm] string file)
+    {
+        if (file.StartsWith("data:image"))
+        {
+            var base64 = Regex.Match(file, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+            var bytes = Convert.FromBase64String(base64);
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\profilePictures", User.Identity.Name + ".png");
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+
+            System.IO.File.WriteAllBytes(path, bytes);
+        }
+        else
+        {
+            TempData["imgError"] = "Geçerli bir resim yükleyiniz";
+        }
+        return RedirectToAction("Ayarlar");
     }
 
     [HttpPost]

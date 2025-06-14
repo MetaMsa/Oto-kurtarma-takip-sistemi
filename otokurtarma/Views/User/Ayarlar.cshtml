@@ -1,47 +1,62 @@
 @{
     ViewData["Title"] = "Ayarlar";
 }
-@model UsersViewModel
+@model SettingsViewModel
 
-<div class="table-responsive">
-    <h1>Hesap Ayarları</h1>
+<div class="table-responsive text-center">
+    <h2>Hesap Ayarları</h2>
     <table class="table">
         <tbody>
             <tr>
-                <th scope="row">Ad-Soyad</th>
-                <td>
-                    @Model.fullname
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Kullanıcı Adı</th>
-                <td>
-                    @Model.username
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">E-Posta</th>
-                <td>
-                    @Model.Email
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Rol</th>
-                <td>
-                    @ViewBag.Role
-                </td>   
-            </tr>
-            <tr>
                 <th scope="row">Profil Fotoğrafı</th>
+            </tr>
+            <tr>
                 <td>
-                    <img style="width: 10rem; height: 10rem;" src="@Url.Content("~/profilePictures/" + User.Identity.Name + ".png")" alt="">
-                    <form enctype="multipart/form-data" asp-action="Ayarlar" class="form" method="post">
+                    <img style="width: 10rem; height: 10rem;"
+                        src="@Url.Content("~/profilePictures/" + User.Identity.Name + ".png")?v=@DateTime.Now.Ticks"
+                        alt="" class="rounded">
+                    <form enctype="multipart/form-data" asp-action="Pp" class="form" method="post">
                         <div class="form-group">
-                            <div class="input-group">
-                                <input type="file" asp-for="pp" class="form-control" placeholder="Şifre"
-                                    required>
-                                <button type="submit" class="btn btn-primary">Profili Değiştir <i
-                                        class="fa fa-edit"></i></button>
+                            <input type="file" name="file" class="form-control" accept=".jpeg, .jpg, .png" required>
+                            <button type="submit" class="btn btn-info">Profili Değiştir <i
+                                    class="fa fa-edit"></i></button>
+                        </div>
+                    </form>
+                    <form enctype="multipart/form-data" asp-action="Pp2" class="form" method="post">
+                        <button onclick="startCamera()" type="button" class="btn btn-info m-1"
+                            style="height: fit-content;" data-bs-toggle="modal" data-bs-target="#photoModal">
+                            Kamerayı Aç
+                        </button>
+                        <div id="photoModal" class="modal fade" data-bs-backdrop="static">
+                            <div class="modal-dialog">
+                                <div class="modal-content text-dark">
+                                    <div class="modal-header">
+                                        <button onclick="stopCamera()" class="btn btn-danger" type="button"
+                                            class="btn btn-danger" data-bs-dismiss="modal">
+                                            Kapat
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <video style="width:25rem; height:25rem; border:2px solid black; border-radius: 5%;" id="video" autoplay>Kameraya
+                                            erişilemiyor</video>
+                                        <canvas class="rounded" id="canvas"></canvas>
+                                        <img class="m-auto rounded" id="photo"
+                                            style="width:25rem; height:25rem; display:none">
+                                        <div id="hata" class="text text-danger">
+
+                                        </div>
+                                        <input type="hidden" id="photoInput" name="file" class="form-control"
+                                            accept=".jpeg, .jpg, .png" required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success" type="button" id="captureButton">Fotoğraf
+                                            Çek</button>
+                                        <button id="btn1" class="btn btn-primary" type="submit"
+                                            style="display: none;">Fotoğraf Yükle</button>
+                                        <button id="btn2" class="btn btn-success" type="button" style=" display:
+                                                none;" onclick="recapture()">Yeniden Çek</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -49,15 +64,14 @@
             </tr>
             <tr>
                 <th scope="row">Şifre</th>
+            </tr>
+            <tr>
                 <td>
                     <form class="form" asp-action="Ayarlar" method="post">
                         <div class="form-group">
-                            <div class="input-group">
-                                <input type="password" asp-for="password" class="form-control" placeholder="Şifre"
-                                    required>
-                                <button type="submit" class="btn btn-primary">Şifreyi Değiştir <i
-                                        class="fa fa-edit"></i></button>
-                            </div>
+                            <input type="password" asp-for="password" class="form-control" placeholder="Şifre" required>
+                            <button type="submit" class="btn btn-info">Şifreyi Değiştir <i
+                                    class="fa fa-edit"></i></button>
                         </div>
                     </form>
                 </td>
@@ -65,3 +79,65 @@
         </tbody>
     </table>
 </div>
+@if (TempData["imgError"] != null)
+{
+    <div class="text-danger text-center">@TempData["imgError"]</div>
+}
+<center>
+    <div class="text-danger text-center" asp-validation-summary="All"></div>
+</center>
+
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const photo = document.getElementById('photo');
+    const captureButton = document.getElementById('captureButton');
+
+    let stream;
+
+    async function startCamera() {
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: "user" },
+            });
+            video.srcObject = stream;
+        } catch (err) {
+            alert('Kameraya erişim izni verin.');
+            document.getElementById('hata').innerHTML = "Kameraya erişim hatası: " + err;
+        }
+    }
+
+    function stopCamera() {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+    }
+
+    captureButton.addEventListener('click', () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        const imageDataUrl = canvas.toDataURL('image/jpeg');
+        photo.src = imageDataUrl;
+
+        document.getElementById('photoInput').value = imageDataUrl;
+
+        photo.style.display = "block";
+
+        video.style.display = "none";
+        canvas.style.display = "none";
+
+        stopCamera();
+
+        captureButton.style.display = "none";
+
+        document.getElementById("btn1").style.display = "block";
+        document.getElementById("btn2").style.display = "block";
+    });
+
+    function recapture() {
+        location.reload();
+    }
+
+</script>

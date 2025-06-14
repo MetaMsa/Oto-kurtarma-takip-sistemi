@@ -1,5 +1,4 @@
 using Entities.Models;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace otokurtarma.Models
@@ -25,9 +24,5 @@ namespace otokurtarma.Models
         public CompaniesModel? CompaniesModel { get; set; }
 
         public IFormFile pp { get; set; } = new FormFile(Stream.Null, 0, 0, "pp", "?.png");
-
-        public UsersViewModel()
-        {
-        }
     }
 }

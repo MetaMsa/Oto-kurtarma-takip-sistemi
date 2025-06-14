@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace otokurtarma.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250610174956_init")]
+    [Migration("20250614161019_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -94,6 +94,8 @@ namespace otokurtarma.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CompaniesModelId");
+
                     b.HasIndex("RolesModelId");
 
                     b.ToTable("Staff");
@@ -133,6 +135,8 @@ namespace otokurtarma.Migrations
 
                     b.HasIndex("CompaniesModelId");
 
+                    b.HasIndex("RolesModelId");
+
                     b.ToTable("Users");
                 });
 
@@ -140,7 +144,7 @@ namespace otokurtarma.Migrations
                 {
                     b.HasOne("Entities.Models.CompaniesModel", "CompaniesModel")
                         .WithMany("Staffs")
-                        .HasForeignKey("RolesModelId")
+                        .HasForeignKey("CompaniesModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -165,7 +169,7 @@ namespace otokurtarma.Migrations
 
                     b.HasOne("Entities.Models.RolesModel", "RolesModel")
                         .WithMany("Users")
-                        .HasForeignKey("CompaniesModelId")
+                        .HasForeignKey("RolesModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

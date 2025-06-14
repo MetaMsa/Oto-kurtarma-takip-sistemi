@@ -52,8 +52,8 @@ namespace otokurtarma.Migrations
                 {
                     table.PrimaryKey("PK_Staff", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Staff_Companies_RolesModelId",
-                        column: x => x.RolesModelId,
+                        name: "FK_Staff_Companies_CompaniesModelId",
+                        column: x => x.CompaniesModelId,
                         principalTable: "Companies",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -88,8 +88,8 @@ namespace otokurtarma.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_CompaniesModelId",
-                        column: x => x.CompaniesModelId,
+                        name: "FK_Users_Roles_RolesModelId",
+                        column: x => x.RolesModelId,
                         principalTable: "Roles",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -106,6 +106,11 @@ namespace otokurtarma.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Staff_CompaniesModelId",
+                table: "Staff",
+                column: "CompaniesModelId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Staff_RolesModelId",
                 table: "Staff",
                 column: "RolesModelId");
@@ -114,6 +119,11 @@ namespace otokurtarma.Migrations
                 name: "IX_Users_CompaniesModelId",
                 table: "Users",
                 column: "CompaniesModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_RolesModelId",
+                table: "Users",
+                column: "RolesModelId");
         }
 
         /// <inheritdoc />

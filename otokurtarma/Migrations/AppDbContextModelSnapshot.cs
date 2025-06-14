@@ -91,6 +91,8 @@ namespace otokurtarma.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CompaniesModelId");
+
                     b.HasIndex("RolesModelId");
 
                     b.ToTable("Staff");
@@ -130,6 +132,8 @@ namespace otokurtarma.Migrations
 
                     b.HasIndex("CompaniesModelId");
 
+                    b.HasIndex("RolesModelId");
+
                     b.ToTable("Users");
                 });
 
@@ -137,7 +141,7 @@ namespace otokurtarma.Migrations
                 {
                     b.HasOne("Entities.Models.CompaniesModel", "CompaniesModel")
                         .WithMany("Staffs")
-                        .HasForeignKey("RolesModelId")
+                        .HasForeignKey("CompaniesModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -162,7 +166,7 @@ namespace otokurtarma.Migrations
 
                     b.HasOne("Entities.Models.RolesModel", "RolesModel")
                         .WithMany("Users")
-                        .HasForeignKey("CompaniesModelId")
+                        .HasForeignKey("RolesModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

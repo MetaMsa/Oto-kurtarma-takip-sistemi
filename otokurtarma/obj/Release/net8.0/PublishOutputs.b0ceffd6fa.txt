@@ -8,8 +8,6 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Relea
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Azure.Core.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Azure.Identity.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Humanizer.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Bcl.Cryptography.dll
@@ -38,16 +36,10 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Relea
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.DependencyModel.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Diagnostics.Abstractions.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Hosting.Abstractions.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Localization.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Localization.Abstractions.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Logging.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.ObjectPool.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Options.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.Primitives.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Extensions.WebEncoders.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Identity.Client.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.IdentityModel.Abstractions.dll
@@ -67,7 +59,6 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Relea
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Mono.TextTemplating.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Newtonsoft.Json.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\Newtonsoft.Json.Bson.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\NuGet.Common.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\NuGet.Configuration.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\NuGet.DependencyResolver.Core.dll
@@ -94,7 +85,6 @@ C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Relea
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\System.Reflection.MetadataLoadContext.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\System.Security.Cryptography.Pkcs.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\System.Security.Cryptography.ProtectedData.dll
-C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\System.Security.Cryptography.Xml.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\System.Text.Encodings.Web.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\System.Text.Json.dll
 C:\Users\mserh\OneDrive\Desktop\Oto-kurtarma-takip-sistemi\otokurtarma\bin\Release\net8.0\publish\af\Humanizer.resources.dll

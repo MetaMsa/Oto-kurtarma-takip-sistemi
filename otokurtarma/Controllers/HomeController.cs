@@ -96,7 +96,7 @@ public class HomeController : Controller
 
                 var role = await _context.Roles.FindAsync(model.username == "metamsa" ? 1 : 2);
 
-                if (await _context.Companies.FirstOrDefaultAsync(d => d.Company == model.CompaniesModel.Company) != null)
+                if (await _context.Companies.FirstOrDefaultAsync(d => d.Company == model.CompaniesModel.Company) == null)
                 {
                     CompaniesModel company = new()
                     {
