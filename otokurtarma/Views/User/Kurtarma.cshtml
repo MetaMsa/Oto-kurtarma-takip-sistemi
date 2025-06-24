@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "Kurtarma";
+}
+
+@model VehiclesModel
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <label>Aracın Kurtarıldığı Yer</label>
+            <div id="map" class="rounded shadow" style="height: 120px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var map = L.map('map').setView([41, 29], 10);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("Koordinatlar:" + e.latlng.lat.toFixed(5).toString() + ", " + e.latlng.lng.toFixed(5).toString())
+            .openOn(map);
+
+        document.getElementById("lat").value = e.latlng.lat.toFixed(5);
+        document.getElementById("lng").value = e.latlng.lng.toFixed(5);
+    }
+
+    map.on('click', onMapClick);
+</script>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form class="form" asp-action="Kurtarma" method="post">
+                <div class="row">
+                        <h6>Koordinatı direk girebilir veya haritadan seçebilirsiniz</h6>
+                    <div class="col-6">
+                        <label for="lat">Enlem</label>
+                        <input type="number" id="lat" asp-for="lat" class="form-control"
+                            step="0.00001" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="lng">Boylam</label>
+                        <input type="number" id="lng" asp-for="lng" class="form-control"
+                            step="0.00001" required>
+                    </div>
+                </div>
+                <label for="plate">Plaka (Boşluksuz girin)</label>
+                <input type="text" asp-for="plate" class="form-control" required>
+                <label for="plate">Araç Tipi</label>
+                <select type="select" asp-for="type" class="form-control" required>
+                    <option value="Otomobil">
+                        Otomobil
+                    </option>
+                    <option value="Motosiklet">
+                        Motosiklet
+                    </option>
+                    <option value="Otobüs">
+                        Otobüs
+                    </option>
+                    <option value="Kamyon">
+                        Kamyon
+                    </option>
+                </select>
+                <label for="plate">Alınan Ücret</label>
+                <input type="number" asp-for="price" class="form-control" required>
+                <button class="btn btn-success m-3" type="submit">
+                    Ekle <i class="fa fa-plus"></i>
+                </button>
+            </form>
+            <a asp-action="KurtarmaListe" class="btn btn-info">
+                Listeye Dön <i class="fa fa-arrow-left"></i>
+            </a>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <center>
+        <div class="text-danger" asp-validation-summary="All"></div>
+    </center>
+</div>

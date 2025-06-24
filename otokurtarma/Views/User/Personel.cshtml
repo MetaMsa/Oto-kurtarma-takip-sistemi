@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Personel";
+}
+
+@model StaffModel
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form class="form" asp-action="Personel" method="post">
+                <label for="Name">Adı Soyadı</label>
+                <input type="text" asp-for="Name" class="form-control" required>
+                <label>Maaşı: 25000</label> <br>
+                <button class="btn btn-success m-3" type="submit">
+                    Ekle <i class="fa fa-plus"></i>
+                </button>
+            </form>
+            <a asp-action="PersonelListe" class="btn btn-info">
+                Listeye Dön <i class="fa fa-arrow-left"></i>
+            </a>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <center>
+        <div class="text-danger" asp-validation-summary="All"></div>
+    </center>
+</div>

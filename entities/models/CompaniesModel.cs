@@ -10,5 +10,6 @@ namespace Entities.Models
 
         public List<UsersModel> Users { get; set; } = new();
         public List<StaffModel> Staffs { get; set; } = new();
+        public List<VehiclesModel> Vehicles { get; set; } = new();
     }
 }

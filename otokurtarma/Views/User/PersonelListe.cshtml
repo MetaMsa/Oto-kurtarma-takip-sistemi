@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Personel Listesi";
+}
+
+@model StaffViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col table-responsive text-center">
+            <h1 class="text-center">
+                Personel Listesi
+            </h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Adı Soyadı
+                    </th>
+                    <th>
+                        Maaşı
+                    </th>
+                </tr>
+                @foreach (var vehicle in Model.Staff)
+                {
+                    <tr>
+                        <td>
+                            @vehicle.Name
+                        </td>
+                        <td>
+                            25000 &#8378;
+                        </td>
+                    </tr>
+                }
+            </table>
+            <center>
+                <a asp-action="Personel" class="btn btn-info">
+                    Yeni Personel Ekle
+                    <i class="fa fa-plus"></i>
+                </a>
+            </center>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="text-center table-responsive">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Şirketler</th>
+            </tr>
+            @foreach (var item in Model.Companies)
+            {
+                <tr>
+                    <td>@item.Company
+                        <a class="btn btn-info" asp-route-id="@item.ID" asp-action="DeleteCompany">Sil <i
+                                class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <th>Kullanıcılar</th>
+            </tr>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>@item.username
+                        <a class="btn btn-info" asp-route-id="@item.ID" asp-action="DeleteUser">Sil <i
+                                class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <th>Personel</th>
+            </tr>
+            @foreach (var item in Model.Staff)
+            {
+                <tr>
+                    <td>@item.Name
+                        <a class="btn btn-info" asp-route-id="@item.ID" asp-action="DeleteStaff">Sil <i
+                                class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (TempData["Hata"] != null)
+    {
+        <div class="text text-danger">
+            @TempData["Hata"]
+        </div>
+    }
+</div>

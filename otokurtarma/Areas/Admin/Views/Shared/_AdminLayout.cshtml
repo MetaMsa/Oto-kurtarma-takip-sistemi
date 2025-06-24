@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - otokurtarma</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/otokurtarma.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <script src="~/lib/dist/jquery.min.js">
+    </script>
+</head>
+
+<body class="bg-warning bg-gradient" id="body">
+    <div class="cursor position-fixed"></div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary bg-gradient border-bottom box-shadow mb-3"
+            id="nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-action="Index"><img style="width: 4rem;" src="../favicon.ico"
+                        alt="logo"></a>
+                @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
+                {
+                    <div class="d-sm-inline-flex justify-content-center">
+                        <div class="position-relative text-center text-dark bg-white rounded">
+                            Admin Paneli <br>
+                            <a class="btn btn-success" asp-area="" asp-controller="User" asp-action="Index">Kullanıcı
+                                Paneline
+                                Dön</a>
+                        </div>
+                    </div>
+                    <div class="navbar-text nav-item text-center btn-group dropstart">
+                        @{
+                            var filePath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",
+                            "profilePictures", User.Identity.Name + ".png");
+                            var profilePicUrl = Url.Content("~/profilePictures/" + User.Identity.Name + ".png");
+                        }
+
+                        @if (System.IO.File.Exists(filePath))
+                        {
+                            <a class="dropdown-toggle" data-bs-toggle="dropdown" id="ddmenu"><img class="rounded"
+                                    style="width: 4rem; height: 4rem;" src="@profilePicUrl?v=@DateTime.Now.Ticks"
+                                    alt="Profil Resmi" /></a>
+                        }
+                        else
+                        {
+                            <a data-bs-toggle="dropdown" class="btn btn-secondary nav-link text-white"><i
+                                    class="fa fa-user"></i></a>
+                        }
+
+                        <div class="dropdown-menu my-3 bg-secondary">
+                            <div class="text-center">
+                                <a class="btn btn-secondary w-100 text-white" asp-area="" asp-controller="User"
+                                    asp-action="Ayarlar">
+                                    Hesap Ayarları
+                                </a>
+                            </div>
+                            <div class="text-center">
+                                <form asp-area="" asp-controller="User" asp-action="Signout" method="post">
+                                    <button class="w-100 btn btn-secondary" type="submit">
+                                        Çıkış Yap
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3 px-5 mx-5">
+            <div class="text-center" id="load">
+                <div class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
+        {
+            <partial name="_CookieConsentPartial" />
+        }
+        <button type="button" class="btn btn-dark" id="dark-light">
+            <i class="fa-solid fa-moon fa-2xl" id="themeicon"></i></button>
+        <div id="footer"
+            class="container-fluid d-flex justify-content-center flex-wrap border-top bg-info bg-gradient text">
+            <div>&copy; 2025</div>
+            <div>&nbsp;otokurtarma&nbsp;</div>
+            <div><a href="https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a/">Mehmet
+                    Serhat ASLAN</a></div>
+            <button type="button" class="btn btn-primary m-2" style="height: fit-content;" data-bs-toggle="modal"
+                data-bs-target="#info">
+                <i class="fa fa-info"></i>
+            </button>
+
+            <div id="info" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content text-dark">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Oto Kurtarma Takip Sistemi</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="../favicon.ico" class="rounded mx-auto d-block w-25" alt="logo">
+                            <p class="text-center">
+                                Copyright &copy; 2025 Mehmet Serhat ASLAN <br>
+                                Web: <a href="https://benserhat.live/">benserhat.live</a> <br>
+                                E-Posta: <a href="mailto:mserhataslan@hotmail.com">mserhataslan@hotmail.com</a> <br>
+                                <a href="mailto:mehmetserhataslan955@gmail.com">mehmetserhataslan955@gmail.com</a> <br>
+                                Mehmet Serhat ASLAN
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <h4>Sürüm: 1.0.0</h4>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

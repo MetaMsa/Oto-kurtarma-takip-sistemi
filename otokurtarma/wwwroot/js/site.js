@@ -34,7 +34,7 @@ window.onload = () => {
     document.getElementById("dark-light").className =
       "btn btn-primary bg-gradient";
 
-    const collection = document.getElementsByTagName("input");
+    const collection = document.querySelectorAll("input, select");
     for (let i = 0; i < collection.length; i++) {
       collection[i].className = "form-control bg-dark text-white text-center";
     }
@@ -49,7 +49,7 @@ window.onload = () => {
     document.getElementById("dark-light").className =
       "btn btn-dark bg-gradient";
 
-    const collection = document.getElementsByTagName("input");
+    const collection = document.querySelectorAll("input, select");
     for (let i = 0; i < collection.length; i++) {
       collection[i].className = "form-control text-center";
     }
@@ -82,7 +82,7 @@ $("#dark-light").on("click", function () {
         document.getElementById("dark-light").className =
           "btn btn-primary bg-gradient";
 
-        const collection = document.getElementsByTagName("input");
+        const collection = document.querySelectorAll("input, select");
         for (let i = 0; i < collection.length; i++) {
           collection[i].className = "form-control bg-dark text-white text-center";
         }
@@ -98,7 +98,7 @@ $("#dark-light").on("click", function () {
         document.getElementById("dark-light").className =
           "btn btn-dark bg-gradient";
 
-        const collection = document.getElementsByTagName("input");
+        const collection = document.querySelectorAll("input, select");
         for (let i = 0; i < collection.length; i++) {
           collection[i].className = "form-control text-center";
         }

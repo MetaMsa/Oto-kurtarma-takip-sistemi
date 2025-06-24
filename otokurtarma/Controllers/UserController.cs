@@ -5,7 +5,6 @@ using otokurtarma.Models;
 using Services.Helper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Entities.Models;
 using System.Text.RegularExpressions;
 
@@ -68,6 +67,70 @@ public class UserController : Controller
     public IActionResult Tanimlar()
     {
         return View();
+    }
+
+
+
+    public IActionResult Kasa()
+    {
+        return View(new CashViewModel(_context));
+    }
+
+    public IActionResult KurtarmaListe()
+    {
+        return View(new VehiclesViewModel(_context));
+    }
+
+    public IActionResult PersonelListe()
+    {
+        return View(new StaffViewModel(_context));
+    }
+
+    public IActionResult Kurtarma()
+    {
+        return View(new VehiclesModel());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Kurtarma([FromForm] VehiclesModel model)
+    {
+        var user = await _context.Users.Include(c => c.CompaniesModel).FirstOrDefaultAsync(u => u.username == User.Identity.Name);
+        VehiclesModel vehicle = new VehiclesModel()
+        {
+            plate = model.plate,
+            type = model.type,
+            price = model.price,
+            lng = model.lng,
+            lat = model.lat,
+            CompaniesModelId = user.CompaniesModelId
+        };
+
+        await _context.Vehicles.AddAsync(vehicle);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Kurtarma");
+    }
+
+    public IActionResult Personel()
+    {
+        return View(new StaffModel());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Personel([FromForm] StaffModel model)
+    {
+        var user = await _context.Users.Include(s => s.RolesModel).Include(c => c.CompaniesModel).FirstOrDefaultAsync(u => u.username == User.Identity.Name);
+        StaffModel staff = new StaffModel()
+        {
+            Name = model.Name,
+            RolesModelId = 3,
+            CompaniesModelId = user.CompaniesModel.ID 
+        };
+
+        await _context.Staff.AddAsync(staff);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Personel");
     }
 
     public async Task<IActionResult> Ayarlar()

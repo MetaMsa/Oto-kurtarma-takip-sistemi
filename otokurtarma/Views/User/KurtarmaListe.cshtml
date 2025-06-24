@@ -1,0 +1,99 @@
+@{
+    ViewData["Title"] = "Araç Kurtarma Listesi";
+}
+
+@model VehiclesViewModel
+
+<center>
+    <a asp-action="Kurtarma" class="btn btn-info">
+        Yeni Araç Ekle
+        <i class="fa fa-plus"></i>
+    </a>
+</center>
+
+<div class="table-responsive text-center">
+    <h1 class="text-center">
+        Kurtarılan Araç Listesi
+    </h1>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Araç Plakası
+            </th>
+            <th>
+                Araç Tipi
+            </th>
+            <th>
+                Alınan Ücret
+            </th>
+            <th>
+                Alındığı Yer
+            </th>
+        </tr>
+        @foreach (var vehicle in Model.Vehicles)
+        {
+            <tr>
+                <td>
+                    @vehicle.plate
+                </td>
+                <td>
+                    @vehicle.type
+                </td>
+                <td>
+                    @vehicle.price
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-secondary" data-bs-toggle="modal"
+                        data-bs-target="#mapModal-@vehicle.ID">
+                        Haritayı Gör
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="mapModal-@vehicle.ID" tabindex="-1">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div id="map-@vehicle.ID" style="height: 400px; width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+
+<script>
+    var maps = {};
+
+    document.addEventListener("DOMContentLoaded", function () {
+        @foreach (var vehicle in Model.Vehicles)
+            {
+                <text>
+                    const mapId_@vehicle.ID = "map-@vehicle.ID";
+                    const modalId_@vehicle.ID = "mapModal-@vehicle.ID";
+
+                    document.getElementById(modalId_@vehicle.ID).addEventListener('shown.bs.modal', function () {
+                        if (!maps[mapId_@vehicle.ID]) {
+                        maps[mapId_@vehicle.ID] = L.map(mapId_@vehicle.ID).setView([@vehicle.lat.ToString().Replace(",", "."), @vehicle.lng.ToString().Replace(",", ".")], 12);
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            }).addTo(maps[mapId_@vehicle.ID]);
+                    var marker = L.marker([@vehicle.lat.ToString().Replace(",", "."), @vehicle.lng.ToString().Replace(",", ".")]).addTo(maps[mapId_@vehicle.ID]);
+                        } else {
+                        maps[mapId_@vehicle.ID].invalidateSize();
+                        }
+                    });
+                </text>
+        }
+    });
+</script>

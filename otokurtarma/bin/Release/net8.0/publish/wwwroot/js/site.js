@@ -36,7 +36,7 @@ window.onload = () => {
 
     const collection = document.getElementsByTagName("input");
     for (let i = 0; i < collection.length; i++) {
-      collection[i].className = "form-control bg-dark text-white";
+      collection[i].className = "form-control bg-dark text-white text-center";
     }
 
     document.getElementById("nav").className =
@@ -51,7 +51,7 @@ window.onload = () => {
 
     const collection = document.getElementsByTagName("input");
     for (let i = 0; i < collection.length; i++) {
-      collection[i].className = "form-control";
+      collection[i].className = "form-control text-center";
     }
 
     document.getElementById("nav").className =
@@ -84,7 +84,7 @@ $("#dark-light").on("click", function () {
 
         const collection = document.getElementsByTagName("input");
         for (let i = 0; i < collection.length; i++) {
-          collection[i].className = "form-control bg-dark text-white";
+          collection[i].className = "form-control bg-dark text-white text-center";
         }
 
         document.getElementById("nav").className =
@@ -100,7 +100,7 @@ $("#dark-light").on("click", function () {
 
         const collection = document.getElementsByTagName("input");
         for (let i = 0; i < collection.length; i++) {
-          collection[i].className = "form-control";
+          collection[i].className = "form-control text-center";
         }
 
         document.getElementById("nav").className =
@@ -112,3 +112,33 @@ $("#dark-light").on("click", function () {
     },
   });
 });
+
+$(document).ready(function () {
+  $("#search").on("input", function () {
+    document.getElementById("searchtable").style.display = "block";
+    var value = $(this).val().toLocaleUpperCase("TR");
+
+    if (value == "") {
+      document.getElementById("searchtable").style.display = "none";
+    } else {
+      $("#searchtable div").filter(function () {
+        $(this).toggle($(this).text().indexOf(value) > -1);
+      });
+    }
+  });
+});
+
+const onClickOutside = (selector, callback) => {
+  const element = document.querySelector(selector);
+  if (!element) return;
+
+  document.addEventListener("click", (e) => {
+    if (!element.contains(e.target)) {
+      callback();
+    }
+  });
+};
+onClickOutside(
+  "#searchh",
+  () => (document.getElementById("searchtable").style.display = "none")
+);

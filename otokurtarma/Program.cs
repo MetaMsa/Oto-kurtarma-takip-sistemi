@@ -29,7 +29,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddDbContext<AppDbContext>(
     opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("localhost"))
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("main"))
 );
 
 var app = builder.Build();
@@ -56,8 +56,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseMiddleware<AdminCheckMiddleware>();
+
+app.MapAreaControllerRoute(
+    name: "Admin",
+    areaName: "Admin",
+    pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}"
+);
+
+app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace otokurtarma.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250614161019_init")]
+    [Migration("20250623155350_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -38,6 +38,13 @@ namespace otokurtarma.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Company = "Moran"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.RolesModel", b =>
@@ -99,6 +106,15 @@ namespace otokurtarma.Migrations
                     b.HasIndex("RolesModelId");
 
                     b.ToTable("Staff");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CompaniesModelId = 1,
+                            Name = "Mehmet Serhat ASLAN",
+                            RolesModelId = 3
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.UsersModel", b =>
@@ -138,6 +154,76 @@ namespace otokurtarma.Migrations
                     b.HasIndex("RolesModelId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CompaniesModelId = 1,
+                            Email = "mehmetserhataslan955@gmail.com",
+                            RolesModelId = 1,
+                            fullname = "Mehmet Serhat Aslan",
+                            password = "XfAxxAYG1bnA0Ak7hoc/+gQ04FbqHHG7XR/7QVAOLWY=",
+                            username = "metamsa"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CompaniesModelId = 1,
+                            Email = "mserhataslan@hotmail.com",
+                            RolesModelId = 2,
+                            fullname = "Mehmet Serhat Aslan",
+                            password = "XfAxxAYG1bnA0Ak7hoc/+gQ04FbqHHG7XR/7QVAOLWY=",
+                            username = "meta"
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.VehiclesModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CompaniesModelId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("lng")
+                        .HasColumnType("real");
+
+                    b.Property<string>("plate")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CompaniesModelId");
+
+                    b.ToTable("Vehicles");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CompaniesModelId = 1,
+                            lat = 0f,
+                            lng = 0f,
+                            plate = "03AYS111",
+                            price = 10000,
+                            type = "Otomobil"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.StaffModel", b =>
@@ -178,11 +264,24 @@ namespace otokurtarma.Migrations
                     b.Navigation("RolesModel");
                 });
 
+            modelBuilder.Entity("Entities.Models.VehiclesModel", b =>
+                {
+                    b.HasOne("Entities.Models.CompaniesModel", "CompaniesModel")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("CompaniesModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompaniesModel");
+                });
+
             modelBuilder.Entity("Entities.Models.CompaniesModel", b =>
                 {
                     b.Navigation("Staffs");
 
                     b.Navigation("Users");
+
+                    b.Navigation("Vehicles");
                 });
 
             modelBuilder.Entity("Entities.Models.RolesModel", b =>

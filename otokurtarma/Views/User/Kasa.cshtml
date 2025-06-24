@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Kasa";
+}
+
+@model CashViewModel
+
+@{
+    int outcome = 0;
+    int income = 0;
+
+    double income_percentage = 0;
+
+    foreach (var staff in Model.Staff)
+    {
+        outcome += 25000;
+    }
+
+    foreach (var vehicle in Model.Vehicles)
+    {
+        income += vehicle.price;
+    }
+
+    if ((income + outcome) != 0)
+    {
+        income_percentage = (double)income / (income + outcome) * 100;
+    }
+}
+
+<center>
+    <div class="chart-container" style="
+    background: conic-gradient(
+    rgb(255, 255, 255) 0% @(income_percentage.ToString("0.##", CultureInfo.InvariantCulture))%,
+    black @(income_percentage.ToString("0.##", CultureInfo.InvariantCulture))% 100%
+    );" id="chart">
+        <div id="ci" class="chart-incontainer m-auto bg-secondary">
+        </div>
+    </div>
+
+    <p class="text-center">
+        Gelir: @income &#8378; <br>
+        Gider: @outcome &#8378;
+    </p>
+</center>
+
+<div id="info" class="position-fixed text-center bg-primary border border-warning border-3"
+    style="z-index: 10; width: 10rem; height: 2rem;">
+</div>
+
+<style>
+    .chart-container {
+        position: relative;
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+        background-color: rgb(0, 0, 0);
+    }
+
+    .chart-incontainer {
+        position: absolute;
+        width: 7rem;
+        height: 7rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 1;
+    }
+</style>
+
+<script>
+    const chart = document.getElementById("chart");
+    const incomePercentage = parseFloat("@(income_percentage.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture))");
+
+    document.getElementById("info").style.display = "none";
+
+    chart.addEventListener("mousemove", function (e) {
+        const rect = chart.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        const dx = mouseX - centerX;
+        const dy = mouseY - centerY;
+
+        let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        angle = (angle + 360 + 90) % 360; // 90° düzeltme, yukarıdan başlasın
+
+        const mousePercentage = (angle / 360) * 100;
+
+        document.getElementById("info").style.display = "block";
+
+        document.getElementById("info").style.left = (e.pageX - 150) + "px";
+        document.getElementById("info").style.top = (e.pageY - 50) + "px";
+
+        if (mousePercentage <= incomePercentage) {
+            document.getElementById("info").innerHTML = "Gelir: " + "@income" + "&#8378;";
+        } else {
+            document.getElementById("info").innerHTML = "Gider: " + "@outcome" + "&#8378;";
+        }
+    });
+
+    chart.addEventListener("mouseout", function (e) {
+        document.getElementById("info").style.display = "none";
+        document.getElementById("ci").innerHTML = "";
+    });
+</script>
