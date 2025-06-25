@@ -1,3 +1,91 @@
 @{
     ViewData["Title"] = "Raporlar";
 }
+
+@model VehicleQueryViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+            <form asp-action="Raporlar" class="form" method="post">
+                <label for="filter">Aracın Tipi</label>
+                <select type="select" name="filter" class="form-select" required>
+                    <option value="Otomobil">
+                        Otomobil
+                    </option>
+                    <option value="Motosiklet">
+                        Motosiklet
+                    </option>
+                    <option value="Otobüs">
+                        Otobüs
+                    </option>
+                    <option value="Kamyon">
+                        Kamyon
+                    </option>
+                </select>
+                <button class="btn btn-secondary m-3" type="submit">Sorgula</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div id="report">
+                <h1 class="text-center">
+                SONUÇLAR
+                </h1>
+                <table class="table table-striped text-center">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Tipi
+                            </th>
+                            <th>
+                                Plakası
+                            </th>
+                            <th>
+                                Ücreti
+                            </th>
+                            <th>
+                                Alındığı Yer
+                            </th>
+                        </tr>
+                        @foreach (var vehicle in Model.Vehicles)
+                        {
+                            <tr>
+                                <td>
+                                    @vehicle.type
+                                </td>
+                                <td>
+                                    @vehicle.plate
+                                </td>
+                                <td>
+                                    @vehicle.price
+                                </td>
+                                <td>
+                                    <div>Enlem: @vehicle.lat Boylam: @vehicle.lng</div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <button id="reportbtn" class="btn btn-secondary m-3" onclick="report()">Raporla</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function report() {
+        var content = document.getElementById("report").innerHTML;
+
+        var original = document.body.innerHTML;
+
+        document.body.innerHTML = content;
+
+        window.print();
+
+        document.body.innerHTML = original;
+    }
+</script>

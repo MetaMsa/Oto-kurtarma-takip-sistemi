@@ -61,29 +61,36 @@ public class UserController : Controller
 
     public IActionResult Raporlar()
     {
-        return View();
+        return View(new VehicleQueryViewModel(_context, User.Identity.Name, " "));
     }
 
-    public IActionResult Tanimlar()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Raporlar(IFormCollection filter)
     {
-        return View();
+        var user = _context.Users.FirstOrDefault(u => u.username == User.Identity.Name);
+
+        return View(new VehicleQueryViewModel(_context, User.Identity.Name, filter["filter"].ToString()));
     }
 
-
+    public IActionResult SirketBilgileri()
+    {
+        return View(new CompanyViewModel(_context, User.Identity.Name));
+    }
 
     public IActionResult Kasa()
     {
-        return View(new CashViewModel(_context));
+        return View(new CashViewModel(_context, User.Identity.Name));
     }
 
     public IActionResult KurtarmaListe()
     {
-        return View(new VehiclesViewModel(_context));
+        return View(new VehiclesViewModel(_context, User.Identity.Name));
     }
 
     public IActionResult PersonelListe()
     {
-        return View(new StaffViewModel(_context));
+        return View(new StaffViewModel(_context, User.Identity.Name));
     }
 
     public IActionResult Kurtarma()
@@ -92,6 +99,7 @@ public class UserController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Kurtarma([FromForm] VehiclesModel model)
     {
         var user = await _context.Users.Include(c => c.CompaniesModel).FirstOrDefaultAsync(u => u.username == User.Identity.Name);
@@ -117,6 +125,7 @@ public class UserController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Personel([FromForm] StaffModel model)
     {
         var user = await _context.Users.Include(s => s.RolesModel).Include(c => c.CompaniesModel).FirstOrDefaultAsync(u => u.username == User.Identity.Name);
@@ -124,7 +133,7 @@ public class UserController : Controller
         {
             Name = model.Name,
             RolesModelId = 3,
-            CompaniesModelId = user.CompaniesModel.ID 
+            CompaniesModelId = user.CompaniesModel.ID
         };
 
         await _context.Staff.AddAsync(staff);

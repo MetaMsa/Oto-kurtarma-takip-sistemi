@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Tanımlar";
+}
+
+@model CompanyViewModel
+
+@{
+    var company = Model.Users.First().CompaniesModel;
+}
+
+<div class="container">
+    <div class="row text-center">
+        <h1>
+            Şirket Bilgileri
+        </h1>
+        <div class="col-md-4">
+            <h2>
+                Şirket Adı
+            </h2>
+            <p class="border border-dark shadow">
+                @company.Company
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>
+                Yetkililer
+            </h2>
+            @foreach (var user in Model.Users)
+            {
+                <p class="border border-dark shadow">
+                    Adı Soyadı: @user.fullname <br>
+                    Kullanıcı Adı: @user.username <br>
+                </p>
+            }
+        </div>
+        <div class="col-md-4">
+            <h2>
+                Personel Listesi
+            </h2>
+            @foreach (var staff in Model.Staff)
+            {
+                <p class="border border-dark shadow">
+                    Adı Soyadı: @staff.Name <br>
+                </p>
+            }
+        </div>
+    </div>
+</div>

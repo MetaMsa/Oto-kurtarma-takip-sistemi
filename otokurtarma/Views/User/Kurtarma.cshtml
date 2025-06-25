@@ -60,8 +60,8 @@
                 </div>
                 <label for="plate">Plaka (Boşluksuz girin)</label>
                 <input type="text" asp-for="plate" class="form-control" required>
-                <label for="plate">Araç Tipi</label>
-                <select type="select" asp-for="type" class="form-control" required>
+                <label for="type">Araç Tipi</label>
+                <select type="select" asp-for="type" class="form-select" required>
                     <option value="Otomobil">
                         Otomobil
                     </option>
@@ -75,7 +75,7 @@
                         Kamyon
                     </option>
                 </select>
-                <label for="plate">Alınan Ücret</label>
+                <label for="price">Alınan Ücret</label>
                 <input type="number" asp-for="price" class="form-control" required>
                 <button class="btn btn-success m-3" type="submit">
                     Ekle <i class="fa fa-plus"></i>

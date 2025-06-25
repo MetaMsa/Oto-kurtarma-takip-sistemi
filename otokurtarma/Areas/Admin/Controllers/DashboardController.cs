@@ -46,8 +46,17 @@ public class DashboardController : Controller
         if (usr.ID != id)
         {
             var user = await _context.Users.FindAsync(id);
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\profilePictures", user.username + ".png");
+            
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
         else

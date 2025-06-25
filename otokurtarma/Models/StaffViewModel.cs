@@ -1,4 +1,5 @@
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace otokurtarma.Models
 {
@@ -8,11 +9,13 @@ namespace otokurtarma.Models
 
         private readonly AppDbContext _context;
 
-        public StaffViewModel(AppDbContext context)
+        public StaffViewModel(AppDbContext context, string username)
         {
             _context = context;
 
-            var staff = _context.Staff.AsEnumerable();
+            var user = _context.Users.FirstOrDefault(u => u.username == username);
+
+            var staff = _context.Staff.Include(c => c.CompaniesModel).Where(s => s.CompaniesModelId == user.CompaniesModelId).AsEnumerable();
 
             Staff = staff;
         }

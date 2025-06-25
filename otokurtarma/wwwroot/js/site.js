@@ -36,7 +36,10 @@ window.onload = () => {
 
     const collection = document.querySelectorAll("input, select");
     for (let i = 0; i < collection.length; i++) {
-      collection[i].className = "form-control bg-dark text-white text-center";
+      if (collection[i].tagName == "INPUT")
+        collection[i].className = "form-control bg-dark text-white text-center";
+      else
+        collection[i].className = "form-select bg-dark text-white text-center";
     }
 
     document.getElementById("nav").className =
@@ -51,7 +54,9 @@ window.onload = () => {
 
     const collection = document.querySelectorAll("input, select");
     for (let i = 0; i < collection.length; i++) {
-      collection[i].className = "form-control text-center";
+      if (collection[i].tagName == "INPUT")
+        collection[i].className = "form-control text-center";
+      else collection[i].className = "form-select text-center";
     }
 
     document.getElementById("nav").className =
@@ -84,7 +89,12 @@ $("#dark-light").on("click", function () {
 
         const collection = document.querySelectorAll("input, select");
         for (let i = 0; i < collection.length; i++) {
-          collection[i].className = "form-control bg-dark text-white text-center";
+          if (collection[i].tagName == "INPUT")
+            collection[i].className =
+              "form-control bg-dark text-white text-center";
+          else
+            collection[i].className =
+              "form-select bg-dark text-white text-center";
         }
 
         document.getElementById("nav").className =
@@ -100,7 +110,12 @@ $("#dark-light").on("click", function () {
 
         const collection = document.querySelectorAll("input, select");
         for (let i = 0; i < collection.length; i++) {
-          collection[i].className = "form-control text-center";
+          if (collection[i].tagName == "INPUT")
+            collection[i].className =
+              "form-control text-center";
+          else
+            collection[i].className =
+              "form-select text-center";
         }
 
         document.getElementById("nav").className =
