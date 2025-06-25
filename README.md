@@ -58,7 +58,7 @@ ASP.NET Core MVC ile geliştirilmiş bir web uygulamasıdır. Bu proje bir oto k
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
-- Ayrıca direk sql dosyasını import edebilirsiniz
+- Ayrıca direk sql dosyasını import edebilirsiniz.
    ```bash
    sqlcmd -S localhost -d master -i proje.sql
    ```
