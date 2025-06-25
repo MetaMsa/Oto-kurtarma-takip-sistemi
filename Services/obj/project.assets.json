@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Users\\mserh\\OneDrive\\Desktop\\Proje\\Oto-kurtarma-takip-sistemi\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\Services\\Services.csproj",
+      "projectPath": "C:\\Users\\mserh\\OneDrive\\Desktop\\Proje\\Oto-kurtarma-takip-sistemi\\Services\\Services.csproj",
       "packagesPath": "C:\\Users\\mserh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mserh\\OneDrive\\Desktop\\Oto-kurtarma-takip-sistemi\\Services\\obj\\",
+      "outputPath": "C:\\Users\\mserh\\OneDrive\\Desktop\\Proje\\Oto-kurtarma-takip-sistemi\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
