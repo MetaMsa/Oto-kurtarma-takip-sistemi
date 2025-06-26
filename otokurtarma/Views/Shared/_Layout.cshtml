@@ -23,7 +23,7 @@
                         alt="logo"></a>
                 @if (ViewContext.RouteData.Values["controller"]?.ToString() != "Home")
                 {
-                    <div class="d-sm-inline-flex justify-content-center">
+                    <div class="d-inline-flex justify-content-center w-50">
                         <div class="position-relative text-center" id="searchh">
                             <input type="search" id="search" placeholder="Ara..." aria-label="Ara..." class="form-control">
                             <div id="searchtable" class="position-absolute w-100 rounded bg-secondary text-white"
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="navbar-text nav-item text-center btn-group dropstart">
+                    <div class="navbar-text nav-item text-center btn-group" id="dd">
                         @{
                             var filePath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",
                             "profilePictures", User.Identity.Name + ".png");
@@ -52,16 +52,18 @@
 
                         @if (System.IO.File.Exists(filePath))
                         {
-                            <a class="dropdown-toggle" data-bs-toggle="dropdown" id="ddmenu"><img class="rounded"
-                                    style="width: 4rem; height: 4rem;" src="@profilePicUrl?v=@DateTime.Now.Ticks" alt="Profil Resmi" /></a>
+                            <a id="ddbtn1" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static"
+                                id="ddbtn"><img class="rounded" style="width: 4rem; height: 4rem;"
+                                    src="@profilePicUrl?v=@DateTime.Now.Ticks" alt="Profil Resmi" /></a>
                         }
                         else
                         {
-                            <a data-bs-toggle="dropdown" class="btn btn-secondary nav-link text-white"><i
-                                    class="fa fa-user"></i></a>
+                            <a id="ddbtn2" data-bs-toggle="dropdown" data-bs-display="static"
+                                class="btn btn-secondary nav-link text-white"><i class="fa fa-user"
+                                    style="width: 2.46rem;"></i></a>
                         }
 
-                        <div class="dropdown-menu my-3 bg-secondary">
+                        <div id="resdd" class="dropdown-menu my-3 bg-secondary">
                             <div class="text-center">
                                 <a class="btn btn-secondary w-100 text-white" asp-action="Ayarlar">
                                     Hesap Ayarları
@@ -155,5 +157,38 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+<script>
+    function updateDropdownDirection() {
+        const dropdown = document.getElementById("resdd");
+
+        const ddbtn1 = document.getElementById("ddbtn1");
+        const ddbtn2 = document.getElementById("ddbtn2");
+
+        if (ddbtn1 !== null) {
+            if (window.innerWidth < 297) {
+                dropdown.classList.remove("dropdown-menu-end");
+                dropdown.classList.add("dropdown-menu-start");
+            } else {
+                dropdown.classList.remove("dropdown-menu-start");
+                dropdown.classList.add("dropdown-menu-end");
+            }
+        }
+        else
+        {
+            if (window.innerWidth < 289) {
+                dropdown.classList.remove("dropdown-menu-end");
+                dropdown.classList.add("dropdown-menu-start");
+            } else {
+                dropdown.classList.remove("dropdown-menu-start");
+                dropdown.classList.add("dropdown-menu-end");
+            }
+        }
+    }
+
+    // Sayfa yüklendiğinde ve pencere boyutu değiştiğinde kontrol et
+    window.addEventListener("DOMContentLoaded", updateDropdownDirection);
+    window.addEventListener("resize", updateDropdownDirection);
+</script>
 
 </html>

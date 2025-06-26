@@ -31,7 +31,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 text-center">
-            <div id="report">
+            <div id="report" class="table-responsive overflow-scroll h-75">
                 <h1 class="text-center">
                 SONUÇLAR
                 </h1>
@@ -78,14 +78,25 @@
 
 <script>
     function report() {
-        var content = document.getElementById("report").innerHTML;
+        const content = document.getElementById("report").innerHTML;
 
-        var original = document.body.innerHTML;
+        const printContainer = document.createElement("div");
+        printContainer.innerHTML = content;
 
-        document.body.innerHTML = content;
+        const originalBody = document.body.cloneNode(true);
+
+        document.body.innerHTML = "";
+        document.body.appendChild(printContainer);
+
+        const viewportMeta = document.createElement("meta");
+        viewportMeta.name = "viewport";
+        viewportMeta.content = "width=device-width, initial-scale=1.0";
+        document.head.appendChild(viewportMeta);
 
         window.print();
 
-        document.body.innerHTML = original;
+        setTimeout(() => {
+            document.body.parentNode.replaceChild(originalBody, document.body);
+        }, 125);
     }
 </script>
