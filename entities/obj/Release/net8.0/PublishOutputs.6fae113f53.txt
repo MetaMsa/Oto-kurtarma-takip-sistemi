@@ -1,0 +1,3 @@
+C:\Users\mserh\OneDrive\Desktop\Proje\Oto-kurtarma-takip-sistemi\entities\bin\Release\net8.0\publish\entities.dll
+C:\Users\mserh\OneDrive\Desktop\Proje\Oto-kurtarma-takip-sistemi\entities\bin\Release\net8.0\publish\entities.deps.json
+C:\Users\mserh\OneDrive\Desktop\Proje\Oto-kurtarma-takip-sistemi\entities\bin\Release\net8.0\publish\entities.pdb
