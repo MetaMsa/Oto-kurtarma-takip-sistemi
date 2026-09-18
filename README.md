@@ -25,7 +25,7 @@ ASP.NET Core MVC ile geliştirilmiş bir web uygulamasıdır. Bu proje bir oto k
 
 1. Bu repoyu klonla:
    ```bash
-   git clone https://github.com/kullaniciAdi/proje-adi.git
+   git clone [https://github.com/kullaniciAdi/proje-adi.git](https://github.com/MetaMsa/Oto-kurtarma-takip-sistemi.git)
    cd Oto-kurtarma-takip-sistemi
    cd otokurtarma
    ```
