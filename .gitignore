@@ -1,2 +1,39 @@
+# .NET / ASP.NET
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+**/.vs/
+
+# User-specific
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Logs
+*.log
+
+# Local databases
+*.db
+*.db-shm
+*.db-wal
+
+# Local configuration
+appsettings.Development.json
+appsettings.Local.json
+
 .vs/
 otokurtarma/.vs

@@ -29,7 +29,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddDbContext<AppDbContext>(
     opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("main"))
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("localhost"))
 );
 
 var app = builder.Build();

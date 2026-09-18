@@ -1,3 +1,0 @@
-C:\Users\mserh\OneDrive\Desktop\Proje\Oto-kurtarma-takip-sistemi\Services\bin\Release\net8.0\publish\Services.dll
-C:\Users\mserh\OneDrive\Desktop\Proje\Oto-kurtarma-takip-sistemi\Services\bin\Release\net8.0\publish\Services.deps.json
-C:\Users\mserh\OneDrive\Desktop\Proje\Oto-kurtarma-takip-sistemi\Services\bin\Release\net8.0\publish\Services.pdb
